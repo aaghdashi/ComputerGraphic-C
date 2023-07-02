@@ -1,0 +1,53 @@
+#include <math.h>
+#include <dos.h>
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+int main(void)
+{
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+   int radius = 100;
+   int x,y,xc,yc,xt,yt,xb,yb,x1,x2,y1,y2;
+   float t,pi,t2;
+   pi=4*atan(1)/180;
+   initgraph(&gdriver, &gmode, "");
+   errorcode = graphresult();
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+   setcolor(getmaxcolor());
+   xc=midx;
+   yc=midy;
+   xt=100;yt=220;xb=200;yb=260;
+   for(t2=0;t2<360;t2+=10)
+   {
+	y1=(xt-xc)*sin(t2*pi)+(yt-yc)*cos(t2*pi)+yc;
+	x1=(xt-xc)*cos(t2*pi)-(yt-yc)*sin(t2*pi)+xc;
+	y2=(xb-xc)*sin(t2*pi)+(yb-yc)*cos(t2*pi)+yc;
+	x2=(xb-xc)*cos(t2*pi)-(yb-yc)*sin(t2*pi)+xc;
+	setcolor(10);
+	line(x1,y1,x2,y1);
+	line(x1,y1,x1,y2);
+	line(x2,y2,x2,y1);
+	line(x2,y2,x1,y2);
+ }
+   delay(150);
+      for(t2=360;t2>0;t2+=10)
+   {
+	y1=(xt-xc)*sin(t2*pi)+(yt-yc)*cos(t2*pi)+yc;
+	x1=(xt-xc)*cos(t2*pi)-(yt-yc)*sin(t2*pi)+xc;
+	y2=(xb-xc)*sin(t2*pi)+(yb-yc)*cos(t2*pi)+yc;
+	x2=(xb-xc)*cos(t2*pi)-(yb-yc)*sin(t2*pi)+xc;
+	setcolor(10);
+	line(x1,y1,x2,y1);
+	line(x1,y1,x1,y2);
+	line(x2,y2,x2,y1);
+	line(x2,y2,x1,y2);
+ }
+   delay(150);
+   getch();
+   closegraph();
+   return 0;
+}
+

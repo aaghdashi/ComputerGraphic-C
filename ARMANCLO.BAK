@@ -1,0 +1,67 @@
+#include"iostream.h"
+#include"conio.h"
+//#include"stdio.h"
+//#include"stdlib.h"
+#include"graphics.h"
+#include"dos.h"
+#include"math.h"
+main()
+{int rh=100,rm=150,rs=200;
+float h,m,s;
+float tetah,tetam,tetas;
+int xc=240,yc=240;
+float xh,yh,xm,ym,xs,ys;
+int gd=0,gm;
+initgraph(&gd,&gm,"");
+int i,rc,rx,tetar,xr,yr;
+rc=220;
+rx=200;
+for(i=1;i<=12;i++)
+{
+circle(xc,yc,rc);
+xr=(rx-10)*cos(tetar*3.14159/180);
+yr=(rx-10)*sin(tetar*3.14159/180);
+circle(xc+xr-4,xc+yr,5);
+tetar+=30;
+rc+=1;
+}
+for(i=0;i<=360;i+=6)
+{
+xr=(rx-10)*cos(i*3.14159/180);
+yr=(rx-10)*sin(i*3.14159/180);
+circle(xc+xr-4,xc+yr,1);
+}
+while(!kbhit())
+{
+struct time t;
+gettime(&t);
+h=t.ti_hour;
+m=t.ti_min;
+s=t.ti_sec;
+gotoxy(0,0);
+cout<<h<<":"<<m<<":"<<s;
+cout<<"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+tetas=(s*6);
+tetam=(m*6);
+if(h>12)
+h=h-12;
+tetah=(h*30);
+xs=rs*cos(((tetas-90)*3.14159265)/180);
+ys=rs*sin(((tetas-90)*3.14159265)/180);
+xm=rm*cos(((tetam-90)*3.14159265)/180);
+ym=rm*sin(((tetam-90)*3.14159265)/180);
+xh=rh*cos(((tetah-90)*3.14159265)/180);
+yh=rh*sin(((tetah-90)*3.14159265)/180);
+setcolor(4);
+line(xc,yc,xs+xc,ys+xc);
+setcolor(2);
+line(xc,yc,xm+xc,ym+xc);
+setcolor(9);
+line(xc,yc,xh+xc,yh+xc);
+delay(50);
+setcolor(0);
+line(xc,yc,xs+xc,ys+xc);
+line(xc,yc,xm+xc,ym+xc);
+line(xc,yc,xh+xc,yh+xc);
+}
+}

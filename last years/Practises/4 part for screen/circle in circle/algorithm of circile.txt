@@ -1,0 +1,19 @@
+a=nogteye start
+b=nogteye barkhord
+0=mabdae mokhtasat
+newdaraje= darajeye(ab,bo) *2
+
+
+darajeye bargasht:
+
+if (y<=0)
+{
+	if harakat(Right -> Left)		=> 	180 + new.jadid
+	if harakat(left -> right)		=> 	180 - new.jadid
+	
+}
+else if (y>0)
+{
+	if harakat(Right -> Left)		=> 	180 - new.jadid
+	if harakat(left -> right)		=> 	180 + new.jadid
+}

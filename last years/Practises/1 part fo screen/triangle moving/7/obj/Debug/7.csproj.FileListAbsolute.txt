@@ -1,0 +1,9 @@
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\obj\Debug\7.exe
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\obj\Debug\7.pdb
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\bin\Debug\7.exe
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\bin\Debug\7.pdb
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\obj\Debug\ResolveAssemblyReference.cache
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\obj\Debug\_.Form1.resources
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\obj\Debug\_7.Properties.Resources.resources
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\obj\Debug\GenerateResource-ResGen.read.1.tlog
+I:\programing\Grafic Class\Practises\1 part fo screen\triangle moving\7\obj\Debug\GenerateResource-ResGen.write.1.tlog

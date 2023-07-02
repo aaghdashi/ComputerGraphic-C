@@ -1,0 +1,7 @@
+F:\adeli\Practises\1 part fo screen\point moving\7\obj\Debug\7.exe
+F:\adeli\Practises\1 part fo screen\point moving\7\obj\Debug\7.pdb
+F:\adeli\Practises\1 part fo screen\point moving\7\obj\Debug\ResolveAssemblyReference.cache
+F:\adeli\Practises\1 part fo screen\point moving\7\obj\Debug\_.Form1.resources
+F:\adeli\Practises\1 part fo screen\point moving\7\obj\Debug\_7.Properties.Resources.resources
+F:\adeli\Practises\1 part fo screen\point moving\7\obj\Debug\ResGen.read.1.tlog
+F:\adeli\Practises\1 part fo screen\point moving\7\obj\Debug\ResGen.write.1.tlog

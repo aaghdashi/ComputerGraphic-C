@@ -1,0 +1,36 @@
+C:\Users\sia\Desktop\Default\Default\bin\Debug\Default.exe
+C:\Users\sia\Desktop\Default\Default\bin\Debug\Default.pdb
+C:\Users\sia\Desktop\Default\Default\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\sia\Desktop\Default\Default\obj\x86\Debug\Default.Form1.resources
+C:\Users\sia\Desktop\Default\Default\obj\x86\Debug\Default.Properties.Resources.resources
+C:\Users\sia\Desktop\Default\Default\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\sia\Desktop\Default\Default\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\sia\Desktop\Default\Default\obj\x86\Debug\Default.exe
+C:\Users\sia\Desktop\Default\Default\obj\x86\Debug\Default.pdb
+C:\Users\sia\Desktop\02_circle\Default\obj\x86\Debug\Default.exe
+C:\Users\sia\Desktop\02_circle\Default\obj\x86\Debug\Default.pdb
+C:\Users\sia\Desktop\02_circle\Default\bin\Debug\Default.exe
+C:\Users\sia\Desktop\02_circle\Default\bin\Debug\Default.pdb
+C:\Users\sia\Desktop\02_circle\Default\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\sia\Desktop\02_circle\Default\obj\x86\Debug\Default.Form1.resources
+C:\Users\sia\Desktop\02_circle\Default\obj\x86\Debug\Default.Properties.Resources.resources
+C:\Users\sia\Desktop\02_circle\Default\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\sia\Desktop\02_circle\Default\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\sia\Desktop\02_circle - Copy\Default\obj\x86\Debug\Default.exe
+C:\Users\sia\Desktop\02_circle - Copy\Default\obj\x86\Debug\Default.pdb
+C:\Users\sia\Desktop\02_circle - Copy\Default\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\sia\Desktop\02_circle - Copy\Default\obj\x86\Debug\Default.Form1.resources
+C:\Users\sia\Desktop\02_circle - Copy\Default\obj\x86\Debug\Default.Properties.Resources.resources
+C:\Users\sia\Desktop\02_circle - Copy\Default\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\sia\Desktop\02_circle - Copy\Default\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\sia\Desktop\02_circle - Copy\Default\bin\Debug\Default.exe
+C:\Users\sia\Desktop\02_circle - Copy\Default\bin\Debug\Default.pdb
+C:\Users\sia\Desktop\circle in circle\Default\obj\x86\Debug\Default.exe
+C:\Users\sia\Desktop\circle in circle\Default\obj\x86\Debug\Default.pdb
+C:\Users\sia\Desktop\circle in circle\Default\bin\Debug\Default.exe
+C:\Users\sia\Desktop\circle in circle\Default\bin\Debug\Default.pdb
+C:\Users\sia\Desktop\circle in circle\Default\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\sia\Desktop\circle in circle\Default\obj\x86\Debug\Default.Form1.resources
+C:\Users\sia\Desktop\circle in circle\Default\obj\x86\Debug\Default.Properties.Resources.resources
+C:\Users\sia\Desktop\circle in circle\Default\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\sia\Desktop\circle in circle\Default\obj\x86\Debug\GenerateResource.write.1.tlog

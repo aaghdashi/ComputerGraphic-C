@@ -1,0 +1,556 @@
+#include<dos.h>
+#include<stdio.h>
+#include<conio.h>
+main()
+{
+
+int d=293,b=590;
+int r=333;
+int m=364;
+int f=400;
+int s=450;
+int l=500;
+int c=520;
+float g,x,y;
+
+int i=12;
+int b1=0,b2=1,b3=4,b4=3,b5=11,b6=14,b7=5;
+char ch;int ar=4;
+int w;
+clrscr();
+
+textattr(2*16+14);
+
+clrscr();
+ window(30,3,70,11);
+
+textattr(4*16+11);
+clrscr();
+
+gotoxy(1,8);cprintf("%c",200);for(w=1;w<40;w++)cprintf("%c",205);cprintf("%c",188);
+
+for(w=2;w<8;w++){gotoxy(1,w);cprintf("%c",186);}for(w=2;w<8;w++){gotoxy(41,w);cprintf("%c",186);}
+gotoxy(1,9);
+
+textattr(4*16+11);
+
+
+gotoxy(1,1);cprintf("%c",201);for(w=1;w<40;w++)cprintf("%c",205);cprintf("%c",187);
+
+gotoxy(18,2);cputs("ëŸ‘þ");
+gotoxy(19,3);cputs("¢‘û¤ê øõû éþ÷¬—");
+gotoxy(11,5);cputs("üõþŸ¤‘®¤ó¢“ä:¥‘¨ ùõ‘÷¤“");
+gotoxy(18,6);cputs("¢þõŸ :üìþ¨øõ¤ø‘ªõ");
+gotoxy(10,7);cputs("Cner.. 76¤‘ú“");
+
+
+window(30,11,70,11);
+textattr(2*16+2);
+clrscr();
+/*******************************/
+getch();
+window(10,10,76,23);
+textattr(0*16+13);
+clrscr();
+gotoxy(21,1);cprintf("%c",200);for(w=1;w<40;w++)cprintf("%c",205);cprintf("%c",188);
+window(8,11,74,24);
+textattr(i*16+11);
+clrscr();
+gotoxy(1,1);cprintf("%c",201);for(w=2;w<67;w++)cprintf("%c",205);cprintf("%c",187);
+gotoxy(1,12);cprintf("%c",200);for(w=2;w<67;w++)cprintf("%c",205);cprintf("%c",188);
+for(w=2;w<12;w++){gotoxy(1,w) ;cprintf("%c",186);}
+for(w=2;w<12;w++){gotoxy(67,w);cprintf("%c",186);}
+
+l:
+window(8,11,74,24);
+
+
+s:
+if (ar==0)ar=6;if(ar==7)ar=1;
+if (ar==1){ textattr(11*16+4);gotoxy(4,13);cputs("  šø¤¡  ");textattr(1*16+14);gotoxy(14,13);cputs("¢÷î¤‘þ¨“");gotoxy(25,13);cputs("   ¢÷î  ");gotoxy(35,13);cputs("  ¯¨ø—õ ");gotoxy(45,13);cputs("  âþ¤¨  ");gotoxy(55,13);cputs("âþ¤¨¤‘þ¨“");}
+if (ar==2){ textattr(1*16+14);gotoxy(4,13);cputs("  šø¤¡  ");textattr(11*16+4);gotoxy(14,13);cputs("¢÷î¤‘þ¨“");textattr(1*16+14);gotoxy(25,13);cputs("   ¢÷î  ");gotoxy(35,13);cputs("  ¯¨ø—õ ");textattr(1*16+14);gotoxy(45,13);cputs("  âþ¤¨  ");gotoxy(55,13);cputs("âþ¤¨¤‘þ¨“");}
+if (ar==3){ textattr(1*16+14);gotoxy(4,13);cputs("  šø¤¡  ");gotoxy(14,13);cputs("¢÷î¤‘þ¨“");textattr(11*16+4);gotoxy(25,13);cputs("   ¢÷î  ");textattr(1*16+14);gotoxy(35,13);cputs("  ¯¨ø—õ ");textattr(1*16+14);gotoxy(45,13);cputs("  âþ¤¨  ");gotoxy(55,13);cputs("âþ¤¨¤‘þ¨“");}
+if (ar==4){ textattr(1*16+14);gotoxy(4,13);cputs("  šø¤¡  ");gotoxy(14,13);cputs("¢÷î¤‘þ¨“");gotoxy(25,13);cputs("   ¢÷î  ");textattr(11*16+4);gotoxy(35,13);cputs("  ¯¨ø—õ ");textattr(1*16+14);gotoxy(45,13);cputs("  âþ¤¨  ");gotoxy(55,13);cputs("âþ¤¨¤‘þ¨“"); }
+if (ar==5){ textattr(1*16+14);gotoxy(4,13);cputs("  šø¤¡  ");gotoxy(14,13);cputs("¢÷î¤‘þ¨“");gotoxy(25,13);cputs("   ¢÷î  ");gotoxy(35,13);cputs("  ¯¨ø—õ ");textattr(11*16+4);gotoxy(45,13);cputs("  âþ¤¨  ");textattr(1*16+14);gotoxy(55,13);cputs("âþ¤¨¤‘þ¨“");}
+if (ar==6){ textattr(1*16+14);gotoxy(4,13);cputs("  šø¤¡  ");gotoxy(14,13);cputs("¢÷î¤‘þ¨“");gotoxy(25,13);cputs("   ¢÷î  ");gotoxy(35,13);cputs("  ¯¨ø—õ ");gotoxy(45,13);cputs("  âþ¤¨  ");textattr(11*16+4);gotoxy(55,13);cputs("âþ¤¨¤‘þ¨“");}
+
+
+
+
+lable:
+      ch=getch();
+      if(ch==13){if(ar==1)goto end;
+		 if(ar==2){g=950;x=95;y=950;goto navaz;}
+		 if(ar==3){g=750;x=75;y=750;goto navaz;}
+		 if(ar==4){g=500;x=50;y=500;goto navaz;}
+		 if(ar==5){g=440;x=44;y=440;goto navaz;}
+		 if(ar==6){g=380;x=38;y=380;goto navaz;}
+		 }
+      if(ch==75){ar--;goto s;}
+      if(ch==77){ar++;goto s;}
+      goto s;
+
+
+
+navaz:
+window(9,12,73,21);
+textattr(i*16+6);
+clrscr();
+
+
+gotoxy(2,2);
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(y);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(2*g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(2*g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b2);sound(r);delay(3*g/2);cprintf(" %c",14);
+textattr(i*16+b1);sound(d);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b2);sound(r);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(3*y);cprintf(" %c",14);
+
+gotoxy(2,3);
+
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(y);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(2*g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(2*g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b2);sound(r);delay(3*g/2);cprintf(" %c",14);
+textattr(i*16+b1);sound(d);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b2);sound(r);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(3*y);cprintf(" %c",14);
+
+/************
+	     ****************
+			     *****/
+textattr(i*16+b6);sound(l);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(y);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(3*g/2);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b7);sound(c);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(3*g/2);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b7);sound(c);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);cprintf(" %c",14);
+
+
+textattr(i*16+b3);sound(m);delay(3*x);cprintf(" %c",14);
+
+textattr(i*16+b2);sound(r);delay(3*g/2);cprintf(" %c",14);
+textattr(i*16+b1);sound(d);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b2);sound(r);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(3*y);cprintf(" %c",14);
+
+/*********
+	  **************
+			********/
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(y);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(2*g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(2*g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+
+textattr(i*16+b2);sound(r);delay(3*g/2);cprintf(" %c",14);
+textattr(i*16+b1);sound(d);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b2);sound(r);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(2*y);cprintf(" %c",14);
+
+/************
+	     ****************
+			     *****/
+
+
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(3*y);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(y);cprintf(" %c",14);
+
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(2*y);cprintf(" %c",14);
+/**************
+	***********
+	***********/
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(2*y);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b7);sound(c);delay(g);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(g);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(y);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b7);sound(c);delay(g);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(g);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(y);cprintf(" %c",14);
+/****************
+		 *************
+			      **********/
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b1);sound(b);delay(g);cprintf(" %c",14);
+textattr(i*16+b7);sound(c);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b7);sound(c);delay(g);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b7);sound(c);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b7);sound(c);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b7);sound(c);delay(g);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b6);sound(l);delay(g);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(3*g/4);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(y);cprintf(" %c",14);
+/****************
+		 *************
+			      **********/
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/2);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/4);cprintf(" %c",14);
+
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(3*g/2);cprintf(" %c",14);
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+
+textattr(i*16+b5);sound(s);delay(g);nosound();delay(y);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b6);sound(l);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b5);sound(s);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b4);sound(f);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/4);nosound();delay(x/4);cprintf(" %c",14);
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+
+textattr(i*16+b3);sound(m);delay(g);nosound();delay(x);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b5);sound(s);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b4);sound(f);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b3);sound(m);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+textattr(i*16+b3);sound(m);delay(g/2);cprintf(" %c",14);
+textattr(i*16+b2);sound(r);delay(g/2);nosound();delay(x/2);cprintf(" %c",14);
+
+
+textattr(i*16+b2);sound(r);delay(g);nosound();delay(y);cprintf(" %c",14);
+
+
+
+
+goto l;
+
+
+
+  end: ;
+}

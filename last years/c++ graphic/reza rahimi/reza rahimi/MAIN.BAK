@@ -1,0 +1,3040 @@
+#include "main.h"
+
+void makeon(int c0,int c1,int c2,int xt,int yt,int xb,int yb,int fo,int st,int si,int c3,int xs,int ys,char strfo[10] )
+	{
+	setlinestyle(0,1,1);
+	settextstyle(fo,st,si);
+	setcolor(c0);
+	rectangle(xt,yt,xb,yb);
+	setfillstyle(1,c2);
+	floodfill(xt+7,yt+7,c0);
+	setcolor(c1);
+	rectangle(xt+5,yt+4,xb-4,yb-5);
+	setfillstyle(1,c1);
+	floodfill(xt+7,yt+6,c1);
+	line(xb,yt,xb-4,yt+4);
+	line(xt,yb,xt+4,yb-5);
+	rectangle(xt,yt,xb,yb);
+	setfillstyle(1,c0);
+	floodfill(xt+3,yt+7,c1);
+	setfillstyle(1,c2);
+	floodfill(xb-2,yb-5,c1);
+	setcolor(c3);outtextxy(xs,ys,strfo);
+	}
+
+int  getdigit(int x,int y,int down,int up)
+	{
+	int t,gg=0;
+	int n,set,xl,yl;
+	n=up-down;
+	xl=x+6;yl=y+15;
+	if(n>=100) set=3;
+	  else set=2;
+	for(t=0;t<4;t++)
+	    dig[t]=NULL;
+	settextstyle(0,0,1);
+	setlinestyle(0,1,1);
+	setcolor(15);
+	line(xl,yl,xl+8,yl);
+	while( ( ch=getch() )!=13 )
+		{
+		if(ch==27) return(-1);
+		 else if( (ch=='\b') && gg==0 )
+		 {setcolor(15);setlinestyle(0,1,1);
+		 line(xl,yl,xl+8,yl);xl=x+6;yl=y+15;
+		 sound(5000);delay(10);nosound();
+		 }
+		 else if( ch=='\b' && gg>0 )
+		 {
+		 setcolor(0);
+		 line(xl,yl,xl+8,yl);
+		 settextstyle(0,0,1);
+		 outtextxy(x+6,y+8,dig);
+		 setcolor(15);
+		 xl=xl-8;
+		 line(xl,yl,xl+8,yl);
+		 dig[--gg]=NULL;
+		 }
+		 else if(ch!='\b' && gg>=set)
+		 {
+		  setcolor(15);setlinestyle(0,1,1);
+		 line(xl,yl,xl+8,yl);
+		 sound(5000);delay(10);nosound();
+		 }
+		 else if(ch>47 && ch<58 )
+		 {
+		 dig[gg]=ch;dig[++gg]=NULL;
+		 setcolor(0);
+		 line(xl,yl,xl+8,yl);
+		 setcolor(15);
+		 xl=xl+8;
+		 line(xl,yl,xl+8,yl);
+		 }
+
+		 setcolor(15);
+		 settextstyle(0,0,1);
+		 outtextxy(x+6,y+8,dig);
+		 line(xl,yl,xl+8,yl);
+	   }/*end while*/
+	setcolor(0);
+	line(xl,yl,xl+8,yl);
+	return(1);
+       }
+
+void  ERROR(void)
+     {
+	/*5*/
+	free(buf5);
+	Size=imagesize(95,95,300,160);
+	buf5=malloc(Size);
+	getimage(95,95,300,160,buf5);
+	sound(6000);delay(10);nosound();
+	makeon(15,7,8,95,95,300,160,0,0,1,1,130,110,strc18 );
+	makeon(15,7,8,165,130,225,150,0,0,1,4,165,136,strc25 );
+	getch();
+	makeon(8,7,15,165,130,225,150,0,0,1,4,165,136,strc25 );
+	delay(60);
+	makeon(3,3, 3, 27,437,620,458,0,0,1, 0, 31,443, strc7);
+	putimage(95,95,buf5,0);
+
+     }
+
+
+
+void COPY(int LEFT,int TOP,int RIGHT,int BOTTOM)
+   {
+	/*2*/
+   setviewport(32,81,379,428,CLP);
+	Size=imagesize(LEFT,TOP,RIGHT,BOTTOM);
+	free(buf2);
+	buf2=malloc(Size);
+	getimage(LEFT,TOP,RIGHT,BOTTOM,buf2);
+   setviewport(0,0, getmaxx(), getmaxy(), CLP);
+	set=1;
+   /*getch();
+    putimage(200,200,buf2,0);*/
+   }
+
+int OC(void)
+	{
+      int are=1;
+      makeon(0,0,0,430,84,580,110,1,0,1,4,447,85,strc7);
+      makeon(7,7,7,430,84,580,110,1,0,1,4,447,85,strc7);
+      makeon(8,7,15,430,84,490,110,0,0,1,4,431,93,strc33);
+      makeon(15,7,8,515,84,575,110,0,0,1,15,515,93,strc25);
+
+	 while(1)
+		{
+		if(are==0)are=2;
+		if(are==3)are=1;
+		switch(are)
+			{
+			case 1:
+				{
+			      makeon(8,7,15,430,84,490,110,0,0,1,4,431,93,strc33);
+			      makeon(15,7,8,515,84,575,110,0,0,1,15,515,93,strc25);
+				break;
+				}
+			case 2:
+				{
+			      makeon(15,7,8,430,84,490,110,0,0,1,15,431,93,strc33);
+			      makeon(8,7,15,515,84,575,110,0,0,1,4,515,93,strc25);
+				break;
+				}
+			 }/*end switch*/
+
+		 ch=getch();
+
+		if(ch==77)are--;
+		if(ch==75)are++;
+		if(ch==13){
+			   switch(are)
+				 {
+				 case 1:
+					{
+					P=1;
+					return(P);
+					}
+				 case 2:
+					{
+					P=2;
+					return(P);
+					}
+				 }/*end switch*/
+			  }/*end if*/
+	 }/*end while*/
+
+
+	}
+
+
+void BLANK(void)
+	{
+	       setcolor(1);
+	       rectangle(410,390,602,398);
+	       setfillstyle(1,0);
+	       floodfill(412,392,1);
+	       setcolor(0);
+	       rectangle(410,390,602,398);
+	       setcolor(15);
+	}
+
+
+/*+++++++++++++++++++++++++++++++*/
+int setline(int X1,int Y1,int X2,int Y2)
+	{
+	int ari=1;
+	char CH;
+	LI=0;
+	/*1*/
+	free(buf1);
+	Size=imagesize(445,286,620,327);
+	buf1=malloc(Size);
+	getimage(445,286,620,327,buf1);
+	makeon(7,0,8,446,287,619,326,1,0,1 ,5,40,30,strc7 );
+
+	  /*1*/
+	 makeon(15,7,8,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(0,1,1);
+	 line(587+8,300,613-6,312);
+	  /*2*/
+	  makeon(15,7,8,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(0,1,3);
+	 line(560+8,300,586-6,312);
+	  /*3*/
+	  makeon(15,7,8,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(1,0,3);
+	 line(533+5,298,559-6,312);
+	  /*4*/
+	  makeon(15,7,8,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(1,0,1);
+	 line(506+5,298,532-6,312);
+	  /*5*/
+	  makeon(15,7,8,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(3,1,3);
+	 line(479+5,297,505-6,313);
+	  /*6*/
+	  makeon(15,7,8,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(3,1,1);
+	 line(452+4,296,478-6,313);
+
+	 while(1)
+		{
+		if(ari==0)ari=6;
+		if(ari==7)ari=1;
+		switch(ari)
+			{
+			case 1:
+				{
+
+	  /*g5*/	makeon(15,7,8,X1,Y1,X2,Y2,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(0,1,1);
+				       line(X1+7,Y1+12,X2-7,Y2-11);
+	/*1*/		 makeon(8,7,15,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(0,1,1);
+			 setcolor(4);
+			 line(587+8,300,613-6,312);
+			 setcolor(14);
+	  /*2*/
+			  makeon(15,7,8,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(0,1,3);
+			 line(560+8,300,586-6,312);
+	  /*6*/
+			  makeon(15,7,8,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(3,1,1);
+			 line(452+4,296,478-6,313);
+
+				break;
+				}
+			case 2:
+				{
+	  /*g5*/	makeon(15,7,8,X1,Y1,X2,Y2,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(0,1,3);
+				       line(X1+7,Y1+12,X2-7,Y2-11);
+
+	  /*1*/
+			 setcolor(14);
+			 makeon(15,7,8,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(0,1,1);
+			 line(587+8,300,613-6,312);
+
+	  /*2*/
+			  makeon(8,7,15,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+			  setcolor(4);
+			 setlinestyle(0,1,3);
+			 line(560+8,300,586-6,312);
+
+	  /*3*/           setcolor(14);
+			  makeon(15,7,8,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(1,0,3);
+			 line(533+5,298,559-6,312);
+
+				break;
+				}
+			case 3:
+				{
+	  /*g5*/	makeon(15,7,8,X1,Y1,X2,Y2,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(1,0,3);
+				       line(X1+7,Y1+12,X2-7,Y2-11);
+
+	  /*2*/           setcolor(14);
+			  makeon(15,7,8,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(0,1,3);
+			 line(560+8,300,586-6,312);
+
+	  /*3*/
+			  makeon(8,7,15,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+			 setcolor(4);
+			 setlinestyle(1,0,3);
+			 line(533+5,298,559-6,312);
+
+	  /*4*/           setcolor(14);
+			  makeon(15,7,8,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(1,0,1);
+			 line(506+5,298,532-6,312);
+
+				break;
+				}
+			case 4:
+				{
+
+	  /*g5*/	makeon(15,7,8,X1,Y1,X2,Y2,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(1,0,1);
+				       line(X1+7,Y1+12,X2-7,Y2-11);
+
+	  /*3*/           setcolor(14);
+			  makeon(15,7,8,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(1,0,3);
+			 line(533+5,298,559-6,312);
+
+	  /*4*/
+			  makeon(8,7,15,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(1,0,1);
+			 setcolor(4);
+			 line(506+5,298,532-6,312);
+
+	  /*5*/           setcolor(14);
+			  makeon(15,7,8,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(3,1,3);
+			 line(479+5,297,505-6,313);
+
+				break;
+				}
+			case 5:
+				{
+	  /*g5*/	makeon(15,7,8,X1,Y1,X2,Y2,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(3,1,3);
+				       line(X1+7,Y1+12,X2-9,Y2-11);
+
+	  /*4*/           setcolor(14);
+			  makeon(15,7,8,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(1,0,1);
+			 line(506+5,298,532-6,312);
+
+	  /*5*/
+			  makeon(8,7,15,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(3,1,3);
+			 setcolor(4);
+			 line(479+5,297,505-6,313);
+
+	  /*6*/           setcolor(14);
+			  makeon(15,7,8,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(3,1,1);
+			 line(452+4,296,478-6,313);
+
+
+				break;
+				}
+			case 6:
+				{
+		  /*g5*/	makeon(15,7,8,X1,Y1,X2,Y2,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(3,1,1);
+				       line(X1+7,Y1+12,X2-9,Y2-11);
+
+	  /*1*/          setcolor(14);
+			 makeon(15,7,8,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(0,1,1);
+			 line(587+8,300,613-6,312);
+	  /*5*/
+			  makeon(15,7,8,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(3,1,3);
+			 line(479+5,297,505-6,313);
+
+	  /*6*/
+			  makeon(8,7,15,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(3,1,1);
+			 setcolor(4);
+			 line(452+4,296,478-6,313);
+
+
+				break;
+				}
+			}/*end switch*/
+
+		CH=getch();
+
+		if(CH==77)ari--;
+		if(CH==75)ari++;
+		if(CH==13){
+			   putimage(445,286,buf1,0);
+			   switch(ari)
+				 {
+				 case 1:
+					{
+					LS=1;
+					return(LS);
+					}
+				 case 2:
+					{
+					LS=2;
+					return(LS);
+					}
+				 case 3:
+					{
+					LS=3;
+					return(LS);
+					}
+				 case 4:
+					{
+					LS=4;
+					return(LS);
+					}
+				 case 5:
+					{
+					LS=5;
+					return(LS);
+					}
+				 case 6:
+					{
+					LS=6;
+					return(LS);
+					}
+
+				 }/*end switch*/
+			  }/*end if*/
+		}/*end while*/
+
+
+	}
+
+int setline1(int X1,int Y1,int X2,int Y2)
+	{
+	int ari=1;
+	char Ch;
+	LI=0;
+	/*4*/
+	free(buf4);
+	Size=imagesize(445,286,620,327);
+	buf4=malloc(Size);
+	getimage(445,286,620,327,buf4);
+	makeon(7,0,8,446,287,619,326,1,0,1 ,5,40,30,strc7 );
+
+
+	  /*1*/
+	 makeon(15,7,8,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(0,1,1);
+	 line(587+8,300,613-6,312);
+
+	  /*2*/
+	  makeon(15,7,8,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(0,1,3);
+	 line(560+8,300,586-6,312);
+
+	  /*3*/
+	  makeon(15,7,8,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(1,0,3);
+	 setcolor(0);
+	 line(533+5,298,559-6,312);
+
+	  /*4*/
+	  makeon(15,7,8,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(1,0,1);setcolor(0);
+	 line(506+5,298,532-6,312);
+
+	  /*5*/
+	  makeon(15,7,8,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(3,1,3);setcolor(0);
+	 line(479+5,297,505-6,313);
+
+	  /*6*/
+	  makeon(15,7,8,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+	 setlinestyle(3,1,1);setcolor(0);
+	 line(452+4,296,478-6,313);
+
+
+
+
+	 while(1)
+		{
+		if(ari==0)ari=2;
+		if(ari==3)ari=1;
+		switch(ari)
+			{
+			case 1:
+				{     /*550,219,600,242*/
+	  /*g5*/	makeon(15,7,8,X1,Y1,X2,Y2,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(0,1,1);
+				       line(X1+7,Y1+12,X2-7,Y2-11);
+				       /*550+7,228+12,600-7,251-11*/
+	  /*1*/
+			 makeon(8,7,15,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(0,1,1);
+			 setcolor(4);
+			 line(587+8,300,613-6,312);
+			 setcolor(14);
+	  /*2*/
+			  makeon(15,7,8,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(0,1,3);
+			 line(560+8,300,586-6,312);
+
+				break;
+				}
+			case 2:
+				{     /*550,219,600,242*/
+	  /*g5*/	makeon(15,7,8,X1,Y1,X2,Y2,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(0,1,3);
+				       line(X1+7,Y1+12,X2-7,Y2-11);
+					     /*557,240,593,240*/
+	  /*1*/
+			 setcolor(14);
+			 makeon(15,7,8,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+			 setlinestyle(0,1,1);
+			 line(587+8,300,613-6,312);
+
+	  /*2*/
+			  makeon(8,7,15,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+			  setcolor(4);
+			 setlinestyle(0,1,3);
+			 line(560+8,300,586-6,312);
+
+
+			break;
+			}
+			}/*end switch*/
+
+		Ch=getch();
+
+		if(Ch==77)ari--;
+		if(Ch==75)ari++;
+		if(Ch==13){
+			   putimage(445,286,buf4,0);
+			   switch(ari)
+				 {
+				 case 1:
+					{
+					LS=1;
+					return(LS);
+					}
+				 case 2:
+					{
+					LS=2;
+					return(LS);
+					}
+				 }/*end switch*/
+			  }/*end if*/
+		}/*end while*/
+
+
+	}
+
+int setwidth(void)
+	{
+	char cH;
+	int arj=1;
+	makeon(8,7,15,550,208,574,231,1,0,1,15,550,186,strc7);
+	 setcolor(4);
+	 circle(562,219,2);
+	 setfillstyle(1,4);
+	 floodfill(562,219,4);
+
+	 while(1)
+		{
+		if(arj==0)arj=2;
+		if(arj==3)arj=1;
+		switch(arj)
+			{
+			case 1:
+				{
+	/*width1*/  makeon(8,7,15,550,208,574,231,1,0,1,15,550,186,strc7);
+		 setcolor(4);
+		circle(562,219,2);
+		setfillstyle(1,4);
+		floodfill(562,219,4);
+	/*width2*/  makeon(15,7,8,576,208,600,231,1,0,1,15,550,186,strc7);
+		setcolor(14);
+		circle(588,219,1);
+		setfillstyle(1,14);
+		floodfill(588,219,14);
+
+
+				break;
+				}
+			case 2:
+				{
+/*width1*/  makeon(15,7,8,550,208,574,231,1,0,1,15,550,186,strc7);
+	 setcolor(14);
+	 circle(562,219,2);
+	 setfillstyle(1,14);
+	 floodfill(562,219,14);
+/*width2*/  makeon(8,7,15,576,208,600,231,1,0,1,15,550,186,strc7);
+	 setcolor(4);
+	circle(588,219,1);
+	setfillstyle(1,4);
+	floodfill(588,219,4);
+
+
+				break;
+				}
+
+			}/*end switch*/
+
+		cH=getch();
+
+		if(cH==77)arj--;
+		if(cH==75)arj++;
+		if(cH==13){
+			   switch(arj)
+				 {
+				 case 1:
+					{
+					W=1;
+					return(W);
+					}
+				 case 2:
+					{
+					W=2;
+					return(W);
+					}
+
+				 }/*end switch*/
+			  }/*end if*/
+	 }/*end while*/
+
+
+	}
+
+void GETSTRING(void)
+	{
+	int x1=31,x2=36;
+	int gh=0;
+	char gs;
+	makeon(0,0,0,27,437,379,458,0,0,1,0,31,443,strc7);
+	makeon(1,1,1,27,437,379,458,0,0,1,0,31,443,strc7);
+	makeon(0,0,0,27,437,379,458,0,0,1,0,31,443,strc7);
+
+	 /*++++++++++++++++++*/
+	 /*TV*/
+	settextstyle(0,0,1);
+	setcolor(15);
+	setlinestyle(0,1,1);
+	line(x1,456,x2,456);
+	while( ( gs=getch() )!=13)
+
+		{
+
+		 if( (gs=='\b') && gh==0 )
+		 {setcolor(15);setlinestyle(0,1,1);
+		 line(31,456,36,456);x1=31;x2=36;
+		 sound(5000);delay(10);nosound();
+		 }
+
+		 else if( gs=='\b' && gh>0 )
+		 {
+		 setcolor(0);
+		 outtextxy(31,443,GS);
+		 line(x1,456,x2,456);
+		 setcolor(15);
+		 x1=x1-8;x2=x2-8;
+		 line(x1,456,x2,456);
+		 GS[--gh]=NULL;
+		 }
+		 else if(gs!='\b' && gh>72)
+				 {
+		  setcolor(15);setlinestyle(0,1,1);
+		 line(x1,456,x2,456);/*x1=31;x2=36;*/
+		 sound(5000);delay(10);nosound();
+
+		 }
+		 else if(gs!='\b'|| (gs>=32 && gs<=122)  || gs==32 )
+		 {
+		 GS[gh]=gs;GS[++gh]=NULL;
+		 setcolor(0);
+		 line(x1,456,x2,456);
+		 setcolor(15);
+		 x1=x1+8;x2=x2+8;
+		 line(x1,456,x2,456);
+
+		 }
+
+		 outtextxy(31,443,GS);
+		 setcolor(15);
+		 line(x1,456,x2,456);
+		}
+	settextstyle(1,0,1);
+	makeon(3,3,3,27,437,379,458,0,0,1,0,31,443,strc7);
+
+	}
+
+
+
+
+
+
+
+
+int SETFONT(void)
+	{
+	char FO;
+	int arg=1;
+/*	makeon(15,7,8,485,186,515,210,0,0,1,15,489,195,strc48);FONT1*/
+/*	makeon(15,7,8,516,186,546,210,1,0,1,15,517,186,strc48);FONT2*/
+/*	makeon(15,7,8,547,186,577,210,3,0,1,15,549,185,strc48);FONT3*/
+/*	makeon(15,7,8,578,186,608,210,4,0,1,15,578,185,strc48);FONT4*/
+
+
+
+	 while(1)
+		{
+		if(arg==0)arg=4;
+		if(arg==5)arg=1;
+		switch(arg)
+			{
+			case 1:
+				{
+
+/*1*/	makeon(8,7,15,485,186,515,210,0,0,1,4,489,195,strc48);/*FONT1*/
+/*2*/	makeon(15,7,8,516,186,546,210,1,0,1,15,517,186,strc48);/*FONT2*/
+/*4*/	makeon(15,7,8,578,186,608,210,4,0,1,15,578,185,strc48);/*FONT4*/
+
+				break;
+				}
+			case 2:
+				{
+
+/*1*/	makeon(15,7,8,485,186,515,210,0,0,1,15,489,195,strc48);/*FONT1*/
+/*2*/	makeon(8,7,15,516,186,546,210,1,0,1,4,517,186,strc48);/*FONT2*/
+/*3*/	makeon(15,7,8,547,186,577,210,3,0,1,15,549,185,strc48);/*FONT3*/
+
+				break;
+				}
+			case 3:
+				{
+
+/*2*/	makeon(15,7,8,516,186,546,210,1,0,1,15,517,186,strc48);/*FONT2*/
+/*3*/	makeon(8,7,15,547,186,577,210,3,0,1,4,549,185,strc48);/*FONT3*/
+/*4*/	makeon(15,7,8,578,186,608,210,4,0,1,15,578,185,strc48);/*FONT4*/
+
+				break;
+				}
+			case 4:
+				{
+
+/*3*/	makeon(15,7,8,547,186,577,210,3,0,1,15,549,185,strc48);/*FONT3*/
+/*4*/	makeon(8,7,15,578,186,608,210,4,0,1,4,578,185,strc48);/*FONT4*/
+/*1*/	makeon(15,7,8,485,186,515,210,0,0,1,15,489,195,strc48);/*FONT1*/
+
+				break;
+				}
+
+			}/*end switch*/
+
+		FO=getch();
+
+		if(FO==77)arg++;
+		if(FO==75)arg--;
+		if(FO==13){
+			   switch(arg)
+				 {
+				 case 1:
+					{
+					FONT=0;
+					return(FONT);
+					}
+				 case 2:
+					{
+					FONT=1;
+					return(FONT);
+					}
+				 case 3:
+					{
+					FONT=3;
+					return(FONT);
+					}
+				 case 4:
+					{
+					FONT=4;
+					return(FONT);
+					}
+
+				 }/*end switch*/
+			  }/*end if*/
+	 }/*end while*/
+
+
+
+
+
+	}
+int SETSIZE(void)
+	{
+	char SI;
+	int ark=1;
+	makeon(15,7,8,485,219,504,242,0,0,1,15,490-6,227,strc49);/*S1*/
+	makeon(15,7,8,505,219,524,242,0,0,1,15,510-6,227,strc50);/*S2*/
+	makeon(15,7,8,525,219,544,242,0,0,1,15,530-6,227,strc51);/*S3*/
+	makeon(15,7,8,545,219,564,242,0,0,1,15,550-6,227,strc52);/*S4*/
+	makeon(15,7,8,565,219,584,242,0,0,1,15,570-6,227,strc53);/*S5*/
+	makeon(15,7,8,585,219,604,242,0,0,1,15,590-6,227,strc54);/*S6*/
+
+	 while(1)
+		{
+		if(ark==0)ark=6;
+		if(ark==7)ark=1;
+		switch(ark)
+			{
+			case 1:
+				{
+
+	makeon(8,7,15,485,219,504,242,0,0,1,4,490-6,227,strc49);/*S1*/
+	makeon(15,7,8,505,219,524,242,0,0,1,15,510-6,227,strc50);/*S2*/
+	makeon(15,7,8,585,219,604,242,0,0,1,15,590-6,227,strc54);/*S6*/
+
+				break;
+				}
+			case 2:
+				{
+	makeon(15,7,8,485,219,504,242,0,0,1,15,490-6,227,strc49);/*S1*/
+	makeon(8,7,15,505,219,524,242,0,0,1,4,510-6,227,strc50);/*S2*/
+	makeon(15,7,8,525,219,544,242,0,0,1,15,530-6,227,strc51);/*S3*/
+
+				break;
+				}
+			case 3:
+				{
+	makeon(15,7,8,505,219,524,242,0,0,1,15,510-6,227,strc50);/*S2*/
+	makeon(8,7,15,525,219,544,242,0,0,1,4,530-6,227,strc51);/*S3*/
+	makeon(15,7,8,545,219,564,242,0,0,1,15,550-6,227,strc52);/*S4*/
+
+				break;
+				}
+			case 4:
+				{
+	makeon(15,7,8,525,219,544,242,0,0,1,15,530-6,227,strc51);/*S3*/
+	makeon(8,7,15,545,219,564,242,0,0,1,4,550-6,227,strc52);/*S4*/
+	makeon(15,7,8,565,219,584,242,0,0,1,15,570-6,227,strc53);/*S5*/
+
+				break;
+				}
+			case 5:
+				{
+	makeon(15,7,8,545,219,564,242,0,0,1,15,550-6,227,strc52);/*S4*/
+	makeon(8,7,15,565,219,584,242,0,0,1,4,570-6,227,strc53);/*S5*/
+	makeon(15,7,8,585,219,604,242,0,0,1,15,590-6,227,strc54);/*S6*/
+
+				break;
+				}
+			case 6:
+				{
+	makeon(15,7,8,485,219,504,242,0,0,1,15,490-6,227,strc49);/*S1*/
+	makeon(15,7,8,565,219,584,242,0,0,1,15,570-6,227,strc53);/*S5*/
+	makeon(8,7,15,585,219,604,242,0,0,1,4,590-6,227,strc54);/*S6*/
+
+				break;
+				}
+
+			}/*end switch*/
+
+		SI=getch();
+
+		if(SI==77)ark++;
+		if(SI==75)ark--;
+		if(SI==13){
+			   switch(ark)
+				 {
+				 case 1:
+					{
+					SIZE=1;
+					return(SIZE);
+					}
+				 case 2:
+					{
+					SIZE=2;
+					return(SIZE);
+					}
+				 case 3:
+					{
+					SIZE=3;
+					return(SIZE);
+					}
+				 case 4:
+					{
+					SIZE=4;
+					return(SIZE);
+					}
+				 case 5:
+					{
+					SIZE=5;
+					return(SIZE);
+					}
+				 case 6:
+					{
+					SIZE=6;
+					return(SIZE);
+					}
+
+				 }/*end switch*/
+			  }/*end if*/
+	    }/*end while*/
+
+	}
+
+int color(void)
+	{
+	int aru=1;
+
+	/*3*/
+	free(buf3);
+	Size=imagesize(364,286,620,327);
+	buf3=malloc(Size);
+	getimage(364,286,620,327,buf3);
+	 makeon(7,0,8,365,287,619,326,1,0,1 ,5,40,30,strc7 );
+
+
+	  /*1*/
+	  makeon(15,7,8,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(1);
+	  rectangle(587+6,292+5,613-5,320-6);
+	  setfillstyle(1,1);
+	  floodfill(587+8,292+7,1);
+	  /*2*/
+	  makeon(15,7,8,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(2);
+	 rectangle(560+6,292+5,586-5,320-6);
+	 setfillstyle(1,2);
+	 floodfill(560+8,292+7,2);
+	  /*3*/
+	  makeon(15,7,8,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(4);
+	 rectangle(533+6,292+5,559-5,320-6);
+	 setfillstyle(1,4);
+	 floodfill(533+8,292+7,4);
+	  /*4*/
+	  makeon(15,7,8,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(0);
+	 rectangle(506+6,292+5,532-5,320-6);
+	 setfillstyle(1,0);
+	 floodfill(506+8,292+7,0);
+	  /*5*/
+	  makeon(15,7,8,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(5);
+	 rectangle(479+6,292+5,505-5,320-6);
+	 setfillstyle(1,5);
+	 floodfill(479+8,292+7,5);
+	  /*6*/
+	  makeon(15,7,8,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(8);
+	 rectangle(452+6,292+5,478-5,320-6);
+	 setfillstyle(1,8);
+	 floodfill(452+8,292+7,8);
+	  /*7*/
+	  makeon(15,7,8,425,292,451,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(15);
+	 rectangle(425+6,292+5,451-5,320-6);
+	 setfillstyle(1,15);
+	 floodfill(425+8,292+7,15);
+	  /*8*/
+	  makeon(15,7,8,398,292,424,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(9);
+	 rectangle(398+6,292+5,424-5,320-6);
+	 setfillstyle(1,9);
+	 floodfill(398+8,292+7,9);
+	  /*9*/
+	  makeon(15,7,8,371,292,397,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(14);
+	 rectangle(371+6,292+5,397-5,320-6);
+	 setfillstyle(1,14);
+	 floodfill(371+8,292+7,14);
+
+
+	 while(1)
+		{
+		if(aru==0)aru=9;
+		if(aru==10)aru=1;
+		switch(aru)
+			{
+			case 1:
+				{
+	  /*1*/
+	  makeon(8,7,15,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(1);
+	  rectangle(587+6,292+5,613-5,320-6);
+	  setfillstyle(1,1);
+	  floodfill(587+8,292+7,1);
+	  /*2*/
+	  makeon(15,7,8,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(2);
+	 rectangle(560+6,292+5,586-5,320-6);
+	 setfillstyle(1,2);
+	 floodfill(560+8,292+7,2);
+	  /*9*/
+	  makeon(15,7,8,371,292,397,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(14);
+	 rectangle(371+6,292+5,397-5,320-6);
+	 setfillstyle(1,14);
+	 floodfill(371+8,292+7,14);
+       makeon(15,1,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+
+				break;
+				}
+			case 2:
+				{
+
+	  /*1*/
+	  makeon(15,7,8,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(1);
+	  rectangle(587+6,292+5,613-5,320-6);
+	  setfillstyle(1,1);
+	  floodfill(587+8,292+7,1);
+	  /*2*/
+	  makeon(8,7,15,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(2);
+	 rectangle(560+6,292+5,586-5,320-6);
+	 setfillstyle(1,2);
+	 floodfill(560+8,292+7,2);
+	  /*3*/
+	  makeon(15,7,8,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(4);
+	 rectangle(533+6,292+5,559-5,320-6);
+	 setfillstyle(1,4);
+	 floodfill(533+8,292+7,4);
+
+       makeon(15,2,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+				break;
+				}
+			case 3:
+				{
+
+	  /*2*/
+	  makeon(15,7,8,560,292,586,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(2);
+	 rectangle(560+6,292+5,586-5,320-6);
+	 setfillstyle(1,2);
+	 floodfill(560+8,292+7,2);
+	  /*3*/
+	  makeon(8,7,15,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(4);
+	 rectangle(533+6,292+5,559-5,320-6);
+	 setfillstyle(1,4);
+	 floodfill(533+8,292+7,4);
+	  /*4*/
+	  makeon(15,7,8,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(0);
+	 rectangle(506+6,292+5,532-5,320-6);
+	 setfillstyle(1,0);
+	 floodfill(506+8,292+7,0);
+
+       makeon(15,4,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+				break;
+				}
+			case 4:
+				{
+
+	  /*3*/
+	  makeon(15,7,8,533,292,559,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(4);
+	 rectangle(533+6,292+5,559-5,320-6);
+	 setfillstyle(1,4);
+	 floodfill(533+8,292+7,4);
+	  /*4*/
+	  makeon(8,7,15,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(0);
+	 rectangle(506+6,292+5,532-5,320-6);
+	 setfillstyle(1,0);
+	 floodfill(506+8,292+7,0);
+	  /*5*/
+	  makeon(15,7,8,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(5);
+	 rectangle(479+6,292+5,505-5,320-6);
+	 setfillstyle(1,5);
+	 floodfill(479+8,292+7,5);
+       makeon(15,0,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+				break;
+				}
+			case 5:
+				{
+	  /*4*/
+	  makeon(15,7,8,506,292,532,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(0);
+	 rectangle(506+6,292+5,532-5,320-6);
+	 setfillstyle(1,0);
+	 floodfill(506+8,292+7,0);
+	  /*5*/
+	  makeon(8,7,15,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(5);
+	 rectangle(479+6,292+5,505-5,320-6);
+	 setfillstyle(1,5);
+	 floodfill(479+8,292+7,5);
+	  /*6*/
+	  makeon(15,7,8,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(8);
+	 rectangle(452+6,292+5,478-5,320-6);
+	 setfillstyle(1,8);
+	 floodfill(452+8,292+7,8);
+
+       makeon(15,5,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+				break;
+				}
+			case 6:
+				{
+	  /*5*/
+	  makeon(15,7,8,479,292,505,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(5);
+	 rectangle(479+6,292+5,505-5,320-6);
+	 setfillstyle(1,5);
+	 floodfill(479+8,292+7,5);
+	  /*6*/
+	  makeon(8,7,15,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(8);
+	 rectangle(452+6,292+5,478-5,320-6);
+	 setfillstyle(1,8);
+	 floodfill(452+8,292+7,8);
+	  /*7*/
+	  makeon(15,7,8,425,292,451,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(15);
+	 rectangle(425+6,292+5,451-5,320-6);
+	 setfillstyle(1,15);
+	 floodfill(425+8,292+7,15);
+	makeon(15,8,8,550,255,573,277,1,0,1,15,550,252,strc7);
+	setcolor(8);
+	rectangle(550+4,255+3,573-3,277-4);
+
+	setcolor(15);
+	rectangle(550+3,255+3,573-4,277-5);
+
+				break;
+				}
+			case 7:
+				{
+	  /*6*/
+	  makeon(15,7,8,452,292,478,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(8);
+	 rectangle(452+6,292+5,478-5,320-6);
+	 setfillstyle(1,8);
+	 floodfill(452+8,292+7,8);
+	  /*7*/
+	  makeon(8,7,15,425,292,451,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(15);
+	 rectangle(425+6,292+5,451-5,320-6);
+	 setfillstyle(1,15);
+	 floodfill(425+8,292+7,15);
+	  /*8*/
+	  makeon(15,7,8,398,292,424,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(9);
+	 rectangle(398+6,292+5,424-5,320-6);
+	 setfillstyle(1,9);
+	 floodfill(398+8,292+7,9);
+       makeon(7,15,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+				break;
+				}
+			case 8:
+				{
+	  /*7*/
+	  makeon(15,7,8,425,292,451,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(15);
+	 rectangle(425+6,292+5,451-5,320-6);
+	 setfillstyle(1,15);
+	 floodfill(425+8,292+7,15);
+	  /*8*/
+	  makeon(8,7,15,398,292,424,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(9);
+	 rectangle(398+6,292+5,424-5,320-6);
+	 setfillstyle(1,9);
+	 floodfill(398+8,292+7,9);
+	  /*9*/
+	  makeon(15,7,8,371,292,397,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(14);
+	 rectangle(371+6,292+5,397-5,320-6);
+	 setfillstyle(1,14);
+	 floodfill(371+8,292+7,14);
+       makeon(15,9,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+				break;
+				}
+			case 9:
+				{
+	  /*8*/
+	  makeon(15,7,8,398,292,424,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(9);
+	 rectangle(398+6,292+5,424-5,320-6);
+	 setfillstyle(1,9);
+	 floodfill(398+8,292+7,9);
+	  /*9*/
+	  makeon(8,7,15,371,292,397,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(14);
+	 rectangle(371+6,292+5,397-5,320-6);
+	 setfillstyle(1,14);
+	 floodfill(371+8,292+7,14);
+	  /*1*/
+	  makeon(15,7,8,587,292,613,320,1,0,1 ,14,35,35,strc7 );
+	  setcolor(1);
+	  rectangle(587+6,292+5,613-5,320-6);
+	  setfillstyle(1,1);
+	  floodfill(587+8,292+7,1);
+	  makeon(15,14,7,550,255,573,277,1,0,1,15,550,252,strc7);
+	  setcolor(7);
+	  rectangle(550+4,255+3,573-3,277-4);
+
+				break;
+				}
+
+			}/*end switch*/
+
+		ch=getch();
+
+		if(ch==77)aru--;
+		if(ch==75)aru++;
+		if(ch==13){
+			   putimage(364,286,buf3,0);
+			   switch(aru)
+				 {
+				 case 1:
+					{
+					C=1;
+					return(C);
+					}
+				 case 2:
+					{
+					C=2;
+					return(C);
+					}
+				 case 3:
+					{
+					C=4;
+					return(C);
+					}
+				 case 4:
+					{
+					C=0;
+					return(C);
+					}
+				 case 5:
+					{
+					C=5;
+					return(C);
+					}
+				 case 6:
+					{
+					C=7;
+					return(C);
+					}
+				 case 7:
+					{
+					C=15;
+					return(C);
+					}
+				 case 8:
+					{
+					C=9;
+					return(C);
+					}
+				 case 9:
+					{
+					C=14;
+					return(C);
+					}
+
+				 }/*end switch*/
+			  }/*end if*/
+		}/*end while*/
+	}
+int Computer(char cmp[4])
+	{
+	int cd=0;
+	cd=atoi(cmp);
+	return(cd);
+	}
+
+void goodbye(void)
+      {
+	int k;
+	setcolor(14);
+	settextstyle(1,0,10);
+	cleardevice();
+	for(k=0;k<=8000;++k)
+	putpixel(random(640),random(getmaxy()),9/*random(16)*/);
+	settextstyle(1,0,7);
+	outtextxy(15,getmaxy()/2-30," HAVE A NICE DOS");
+	outtextxy(15,getmaxy()/2+100," ABDOREZA RAHIMI");
+	sleep(3);
+	closegraph();clrscr();
+       }
+
+
+void edit(void)
+	{
+
+	 makeon(8,3,9,13,13,626,466,1,0,1,5,20,20,strc7 );
+	 makeon(1,15,9,27,77,383,433,1,0,1,5,70,120,strc7 );
+	 makeon(7,3,8,20,21,619,60,1,0,1 ,5,40,30,strc7 );
+
+	 setlinestyle(0,1,2);
+	  setcolor(14);
+
+	 makeon(15,7,8,26,26,54,54,1,0,1 ,14,35,35,strc7 );
+	 circle(40,40,8);putpixel(40,40,14);
+
+	 makeon(15,7,8,55,26,85,54,1,0,1 ,14,65,35,strc7 );
+	 rectangle(62,36,79,44);
+
+	 makeon(15,7,8,86,26,116,54,1,0,1 ,14,65,35,strc7 );
+	 ellipse(101,40,0,360,9,7);putpixel(101,40,14);
+
+	 makeon(15,7,8,117,26,147,54,1,0,1 ,14,65,35,strc7 );
+	 setlinestyle(0,1,3);
+	 line(125,34,137,46);
+
+	 makeon(15,7,8,148,26,178,54,1,0,1 ,14,65,35,strc7 );
+	 setlinestyle(0,1,2);
+	 arc(163,43,0,180,7);
+
+	 makeon(15,7,8,179,26,209,54,1,0,1 ,14,65,35,strc7 );
+	 setcolor(14);
+	 circle(194,40,2);
+	 setfillstyle(1,14);
+	 floodfill(194,40,14);
+
+	 makeon(15,7,8,210,26,240,54,1,0,1 ,14,478,26,strc7 );
+/*þ void far pieslice(int x, int y, int stangle, int endangle, int radius);*/
+	 setlinestyle(0,1,2);
+	 setcolor(14);
+	 pieslice(225,47,50,128,14);
+	 setfillstyle(1,7);
+	 floodfill(225,40,14);
+	 setcolor(14);
+	 line(225,47,225,34);
+	 /*pie slice*/
+	 makeon(15,7,8,241,57,401,75,0,0,1 ,14,263,63,strc16 );/*ABDOREZA RAHIMI*/
+	 makeon(15,7,8,241,26,281,54,1,0,1 ,14,248,27,strc8 );/*abc*/
+	 makeon(15,7,8,282,26,341,54,1,0,1 ,14,289,26,strc9 );/*copy*/
+	 makeon(15,7,8,342,26,401,54,1,0,1 ,14,349,26,strc10);/*paste*/
+	 makeon(15,7,8,402,26,461,54,1,0,1 ,14,409,26,strc11);/*paint*/
+	 makeon(15,7,8,462,26,520,54,1,0,1 ,14,470,26,strc13);/*clear*/
+	 makeon(15,7,8,521,26,565,54,1,0,1 ,14,528,26,strc14);/*CLS*/
+	 makeon(15,7,8,566,26,615,54,1,0,1 ,14,574,26,strc15);/*QUIT*/
+
+	 while(1)
+		{
+		if(aro==0)aro=14;
+		if(aro==15)aro=1;
+		switch(aro)
+			{
+			case 1:
+				{
+				makeon(8,7,15,26,26,54,54,1,0,1 ,14,35,35,strc7 );
+				circle(40,40,8);putpixel(40,40,14);
+				makeon(15,7,8,55,26,85,54,1,0,1,14,65,35,strc7 );
+				rectangle(62,36,79,44);
+				makeon(15,7,8,566,26,615,54,1,0,1,14,574,26,strc15 );
+				break;
+				}
+			case 2:
+				{
+				makeon(15,7,8,26,26,54,54,1,0,1 ,14,35,35,strc7 );
+				circle(40,40,8);putpixel(40,40,14);
+				makeon(15,7,8,86,26,116,54,1,0,1 ,14,65,35,strc7 );
+				ellipse(101,40,0,360,9,7);putpixel(101,40,14);
+				setcolor(14);
+				makeon(8,7,15,55,26,85,54,1,0,1 ,14,65,35,strc7 );
+				rectangle(62,36,79,44);
+				break;
+				}
+			case 3:
+			       {
+				makeon(8,7,15,86,26,116,54,1,0,1 ,14,65,35,strc7 );
+				setcolor(14);
+				ellipse(101,40,0,360,9,7);putpixel(101,40,14);
+				makeon(15,7,8,55,26,85,54,1,0,1 ,14,65,35,strc7 );
+				rectangle(62,36,79,44);
+				makeon(15,7,8,117,26,147,54,1,0,1 ,14,65,35,strc7 );
+				setlinestyle(0,1,3);
+				line(125,34,137,46);
+				break;
+			       }
+			case 4:
+				{
+				makeon(15,7,8,86,26,116,54,1,0,1 ,14,65,35,strc7 );
+				ellipse(101,40,0,360,9,7);putpixel(101,40,14);
+				 setcolor(14);
+				 makeon(8,7,15,117,26,147,54,1,0,1 ,14,65,35,strc7 );
+				 setlinestyle(0,1,3);
+				 line(125,34,137,46);
+				 makeon(15,7,8,148,26,178,54,1,0,1 ,14,65,35,strc7 );
+				 setlinestyle(0,1,2);
+				 arc(163,43,0,180,7);
+				break;
+				}
+			case 5:
+				{
+				 makeon(15,7,8,117,26,147,54,1,0,1 ,14,65,35,strc7 );
+				 setlinestyle(0,1,3);
+				 line(125,34,137,46);
+				 setcolor(14);
+				 makeon(8,7,15,148,26,178,54,1,0,1 ,14,65,35,strc7 );
+				 setlinestyle(0,1,2);
+				 arc(163,43,0,180,7);
+				 makeon(15,7,8,179,26,209,54,1,0,1 ,14,65,35,strc7 );
+				 setcolor(14);
+				 circle(194,40,2);
+				 setfillstyle(1,14);
+				 floodfill(194,40,14);
+				 break;
+				}
+			case 6:
+				{
+				makeon(15,7,8,148,26,178,54,1,0,1 ,14,65,35,strc7 );
+				 setlinestyle(0,1,2);
+				 arc(163,43,0,180,7);
+				 makeon(8,7,15,179,26,209,54,1,0,1 ,14,65,35,strc7 );
+				 setcolor(14);
+				 circle(194,40,2);
+				 setfillstyle(1,14);
+				 floodfill(194,40,14);
+				 makeon(15,7,8,210,26,240,54,1,0,1 ,14,478,26,strc7 );
+				 setlinestyle(0,1,2);
+				 setcolor(14);
+				 pieslice(225,47,50,128,14);
+				 setfillstyle(1,7);
+				 floodfill(225,40,14);
+				 setcolor(14);
+				 line(225,47,225,34);
+				 break;
+				}
+			case 7:
+				{
+				 makeon(8,7,15,210,26,240,54,1,0,1 ,14,478,26,strc7 );
+				 setlinestyle(0,1,2);
+				 setcolor(14);
+				 pieslice(225,47,50,128,14);
+				 setfillstyle(1,7);
+				 floodfill(225,40,14);
+				 setcolor(14);
+				 line(225,47,225,34);
+				 makeon(15,7,8,179,26,209,54,1,0,1 ,14,65,35,strc7 );
+				 setcolor(14);
+				 circle(194,40,2);
+				 setfillstyle(1,14);
+				 floodfill(194,40,14);
+				 makeon(15,7,8,241,26,281,54,1,0,1 ,14,248,27,strc8 );/*abc*/
+				 break;
+				}
+			case 8:
+				{
+
+			 makeon(15,7,8,210,26,240,54,1,0,1 ,14,478,26,strc7 );
+				 setlinestyle(0,1,2);
+				 setcolor(14);
+				 pieslice(225,47,50,128,14);
+				 setfillstyle(1,7);
+				 floodfill(225,40,14);
+				 setcolor(14);
+				 line(225,47,225,34);
+				 makeon(8,7,15,241,26,281,54,1,0,1 ,14,248,27,strc8 );/*abc*/
+				 makeon(15,7,8,282,26,341,54,1,0,1 ,14,289,26,strc9 );/*copy*/
+				 break;
+				}
+			case 9:
+				{
+				 makeon(15,7,8,241,26,281,54,1,0,1 ,14,248,27,strc8 );/*abc*/
+				 makeon(8,7,15,282,26,341,54,1,0,1 ,14,289,26,strc9 );/*copy*/
+				 makeon(15,7,8,342,26,401,54,1,0,1 ,14,349,26,strc10);/*paste*/
+				break;
+				}
+			case 10:
+				{
+				 makeon(15,7,8,282,26,341,54,1,0,1 ,14,289,26,strc9 );/*copy*/
+				 makeon(8,7,15,342,26,401,54,1,0,1 ,14,349,26,strc10);/*paste*/
+				 makeon(15,7,8,402,26,461,54,1,0,1 ,14,409,26,strc11);/*paint*/
+				break;
+				}
+			case 11:
+				{
+				 makeon(15,7,8,342,26,401,54,1,0,1 ,14,349,26,strc10);/*paste*/
+				 makeon(8,7,15,402,26,461,54,1,0,1 ,14,409,26,strc11);/*paint*/
+				 makeon(15,7,8,462,26,520,54,1,0,1 ,14,470,26,strc13);/*clear*/
+				 break;
+				}
+			case 12:
+				{
+				 makeon(15,7,8,402,26,461,54,1,0,1 ,14,409,26,strc11);/*paint*/
+				 makeon(8,7,15,462,26,520,54,1,0,1 ,14,470,26,strc13);/*clear*/
+				 makeon(15,7,8,521,26,565,54,1,0,1 ,14,528,26,strc14 );
+				 break;
+				}
+			case 13:
+				{
+				 makeon(15,7,8,462,26,520,54,1,0,1 ,14,470,26,strc13);/*clear*/
+				 makeon(8,7,15,521,26,565,54,1,0,1 ,14,528,26,strc14 );/*File*/
+				 makeon(15,7,8,566,26,615,54,1,0,1 ,14,574,26,strc15);
+				 break;
+				}
+			case 14:
+				{
+				 makeon(15,7,8,521,26,565,54,1,0,1 ,14,528,26,strc14 );/*File*/
+				 makeon(8,7,15,566,26,615,54,1,0,1 ,14,574,26,strc15);
+				 makeon(15,7,8,26,26,54,54,1,0,1 ,14,35,35,strc7 );
+				 circle(40,40,8);putpixel(40,40,14);
+				 break;
+				}
+			} /*end switch*/
+
+		ch=getch();
+
+		if(ch==75)aro--;
+		if(ch==77)aro++;
+		if(ch==27) goto loopq;
+		if(ch==13){
+			   switch(aro)
+				 {
+				 case 1: /*CIRCLE*/
+					{
+					auto int CX,CY,CR,CL;
+					setcolor(4);
+					setlinestyle(0,1,2);
+					circle(40,40,8);putpixel(40,40,4);
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc19);
+
+
+					makeon(8,7,15,400,120,530,143,0,0,1,0,405,127,strc20);
+					makeon(15,7,8,400,153,530,176,0,0,1,0,405,160,strc21);
+					makeon(15,7,8,400,186,530,209,0,0,1,0,405,193,strc22);
+					makeon(15,7,8,400,219,530,242,0,0,1,0,405,226,strc31);
+					makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+
+					makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					makeon(8,0,15,550,153,600,176,1,0,1,15,550,153,strc7);
+					makeon(8,0,15,550,186,600,209,1,0,1,15,550,186,strc7);
+			      /*line*/	makeon(15,7,8,550,219,600,242,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(0,1,1);
+				       line(550+7,219+12,600-7,242-11);
+
+			      /*color*/	makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop1:
+					if(getdigit(550,120,1,347)==-1)goto loopb;
+					CX=Computer(dig);
+					if(CX<1 || CX>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					 goto loop1;}
+					makeon(15,7,8,400,120,530,143,0,0,1,0,405,127,strc20);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X=    ,");
+					outtextxy(460,300,dig);
+				 loop2:
+					makeon(8,7,15,400,153,530,176,0,0,1,0,405,160,strc21);
+					if(getdigit(550,153,1,347)==-1)goto loopb;
+					CY=Computer(dig);
+					if(CY<1 || CY>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,153,600,176,1,0,1,15,550,120,strc7);
+					 goto loop2;}
+					makeon(15,7,8,400,153,530,176,0,0,1,0,405,160,strc21);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(500,300,"Y=    ;");
+					outtextxy(520,300,dig);
+
+				 loop3:
+					makeon(8,7,15,400,186,530,209,0,0,1,0,405,193,strc22);
+					if(getdigit(550,186,1,347)==-1)goto loopb;
+					CR=Computer(dig);
+					if(CR<1 || CR>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,186,600,209,1,0,1,15,550,186,strc7);
+					goto loop3;}
+					makeon(15,7,8,400,186,530,209,0,0,1,0,405,193,strc22);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int Radius=    ;");
+					outtextxy(500,315,dig);
+
+
+				loop4:
+					makeon(8,7,15,400,219,530,242,0,0,1,0,405,226,strc31);
+					setline1(550,219,600,242);
+				       if(LS==1) {LI=0;CL=1;}
+				  else if(LS==2) {LI=0;CL=3;}
+				  else if(LS==3) {LI=1;CL=3;}
+				  else if(LS==4) {LI=1;CL=1;}
+				  else if(LS==5) {LI=3;CL=3;}
+				  else           {LI=3;CL=1;}
+
+					makeon(15,7,8,400,219,530,242,0,0,1,0,405,226,strc31);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,330,"setlinestyle( ,1, );");
+					itoa(LI,Line,10);
+					outtextxy(513,330,Line);
+					itoa(CL,width,10);
+					outtextxy(545,330,width);
+
+
+					makeon(8,7,15,400,252,530,275,0,0,1,0,405,259,strc32);
+					 color();
+					makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+					 setcolor(15);
+					 settextstyle(0,0,1);
+					 outtextxy(410,345,"setcolor(  );");
+
+					 itoa(C,S,10);
+					 outtextxy(480,345,S);
+					 outtextxy(410,360,"circle(X,Y,Radius);");
+					 OC();
+					 if(P==2) goto loopb;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					 setcolor(C);
+					 setlinestyle(LI,1,CL);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(5);nosound();
+					 circle(CX,CY,CR);
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb:
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					break;
+					}
+				 /*FZ*/
+				 case 2: /*RECTANGLE*/
+				       {
+					auto int RL,RT,RR,RB,RLI;
+					setcolor(4);
+					setlinestyle(0,1,2);
+					rectangle(62,36,79,44);
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc26);
+
+
+				 /*1*/	makeon(8,7,15,400,117,530,140,0,0,1,0,405,124,strc27);
+				 /*2*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc28);
+				 /*3*/	makeon(15,7,8,400,174,530,197,0,0,1,0,405,181,strc29);
+				 /*4*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc30);
+				 /*5*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+				 /*6*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+				 /*g3*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+				 /*g5*/	makeon(15,7,8,550,228,600,251,1,0,1,15,550,219,strc7);
+			/*		 setlinestyle(0,1,2);
+					arc(565,240,0,180,5);
+					arc(565+11,240,180,360,5);*/
+					 setcolor(14);
+				       setlinestyle(0,1,1);
+				       line(550+7,228+12,600-7,251-11);
+				       makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop5:
+					if(getdigit(550,117,1,347)==-1) goto loopb1;
+					RL=Computer(dig);
+					if(RL<1 || RL>347)
+					{sound(5000);delay(10);nosound();
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+					 goto loop5;}
+				 /*1*/	makeon(15,7,8,400,117,530,140,0,0,1,0,405,124,strc27);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int LEFT=    ;");
+					outtextxy(485,300,dig);
+				 loop6:
+				 /*2*/	makeon(8,7,15,400,144,530,170,0,0,1,0,405,153,strc28);
+					if(getdigit(550,144,1,347)==-1) goto loopb1;
+					RT=Computer(dig);
+					if(RT<1 || RT>347)
+					{sound(5000);delay(10);nosound();
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+					 goto loop6;}
+				 /*2*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc28);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int TOP=    ;");
+					outtextxy(480,315,dig);
+
+				 loop7:
+				 /*3*/	makeon(8,7,15,400,174,530,197,0,0,1,0,405,181,strc29);
+					if(getdigit(550,174,1,347)==-1) goto loopb1;
+					RR=Computer(dig);
+					if(RR<1 || RR>347)
+					{sound(5000);delay(10);nosound();
+				 /*g3*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+					goto loop7;}
+				 /*3*/	makeon(15,7,8,400,174,530,197,0,0,1,0,405,181,strc29);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,330,"int RIGHT=    ;");
+					outtextxy(490,330,dig);
+
+
+				loop8:
+				 /*4*/	makeon(8,7,15,400,201,530,224,0,0,1,0,405,208,strc30);
+					if(getdigit(550,201,1,347)==-1) goto loopb1;
+					RB=Computer(dig);
+					if(RB<1 || RB>347)
+					{sound(5000);delay(10);nosound();
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+					goto loop8;}
+				 /*4*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc30);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,345,"int BOTTOM=    ;");
+					outtextxy(499,345,dig);
+
+
+				 /*5*/	makeon(8,7,15,400,228,530,251,0,0,1,0,405,235,strc31);
+					setline(550,228,600,251);
+
+				       if(LS==1) {LI=0;RLI=1;}
+					else if(LS==2) {LI=0;RLI=3;}
+					 else if(LS==3) {LI=1;RLI=3;}
+					  else if(LS==4) {LI=1;RLI=1;}
+					   else if(LS==5) {LI=3;RLI=3;}
+					    else  {LI=3;RLI=1;}
+				 /*5*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,360,"setlinestyle( ,1, );");
+					itoa(LI,Line,10);
+					outtextxy(513,360,Line);
+					itoa(RLI,width,10);
+					outtextxy(545,360,width);
+
+
+				 /*6*/	makeon(8,7,15,400,255,530,278,0,0,1,0,405,262,strc32);
+					 color();
+				 /*6*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,375,"setcolor(  );");
+					 itoa(C,S,10);
+					 outtextxy(480,375,S);
+       outtextxy(410,390,"rectangle(LEFT,TOP,RIGHT");sleep(1);BLANK();
+       outtextxy(410,390,"ectangle(LEFT,TOP,RIGHT,");sleep(1);BLANK();
+       outtextxy(410,390,"ctangle(LEFT,TOP,RIGHT,B");sleep(1);BLANK();
+       outtextxy(410,390,"tangle(LEFT,TOP,RIGHT,BO");sleep(1);BLANK();
+       outtextxy(410,390,"angle(LEFT,TOP,RIGHT,BOT");sleep(1);BLANK();
+       outtextxy(410,390,"ngle(LEFT,TOP,RIGHT,BOTT");sleep(1);BLANK();
+       outtextxy(410,390,"gle(LEFT,TOP,RIGHT,BOTTO");sleep(1);BLANK();
+       outtextxy(410,390,"le(LEFT,TOP,RIGHT,BOTTOM");sleep(1);BLANK();
+       outtextxy(410,390,"e(LEFT,TOP,RIGHT,BOTTOM;");sleep(1);
+
+					 OC();
+					 if(P==2) goto loopb1;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					 setcolor(C);
+					 setlinestyle(LI,1,RLI);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(10);nosound();
+					 rectangle(RL,RT,RR,RB);
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb1:
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+				       break;
+				       }
+
+				 case 3:   /*ELLIPSE*/
+				       {
+					auto int EX,EY,EH,EV, EL;
+					setlinestyle(0,1,2);
+					setcolor(4);
+					ellipse(101,40,0,360,9,7);putpixel(101,40,4);
+
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc34);
+
+
+				 /*1X*/	makeon(8,7,15,400,117,530,140,0,0,1,0,405,124,strc20);
+				 /*2Y*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc21);
+				 /*3H*/	makeon(15,7,8,400,174,530,197,0,0,1,0,405,181,strc35);
+				 /*4V*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc36);
+				 /*5L*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+				 /*6C*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+				 /*g3*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+				 /*g5*/	makeon(15,7,8,550,228,600,251,1,0,1,15,550,219,strc7);
+					 setcolor(14);
+				       setlinestyle(0,1,1);
+				       line(550+7,228+12,600-7,251-11);
+
+					makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop10:
+					if(getdigit(550,117,1,347)==-1)goto loopb2;
+					EX=Computer(dig);
+					if(EX<1 || EX>347)
+					{sound(5000);delay(10);nosound();
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+					 goto loop10;}
+				 /*1X*/	makeon(15,7,8,400,117,530,140,0,0,1,0,405,124,strc20);
+
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X=    ;");
+					outtextxy(460,300,dig);
+				 loop11:
+				 /*2Y*/	makeon(8,7,15,400,144,530,170,0,0,1,0,405,153,strc21);
+
+					if(getdigit(550,144,1,347)==-1)goto loopb2;
+					EY=Computer(dig);
+					if(EY<1 || EY>347)
+					{sound(5000);delay(10);nosound();
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+					 goto loop11;}
+				 /*2Y*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc21);
+
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int Y=    ;");
+					outtextxy(460,315,dig);
+
+				 loop12:
+				 /*3H*/	makeon(8,7,15,400,174,530,197,0,0,1,0,405,181,strc35);
+
+					if(getdigit(550,174,1,347)==-1)goto loopb2;
+					EH=Computer(dig);
+					if(EH<1 || EH>347)
+					{sound(5000);delay(10);nosound();
+				 /*g3*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+					goto loop12;}
+				 /*3H*/	makeon(15,7,8,400,174,530,197,0,0,1,0,405,181,strc35);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,330,"int Hradius=    ;");
+					outtextxy(510,330,dig);
+
+
+				loop13:
+				 /*4V*/	makeon(8,7,15,400,201,530,224,0,0,1,0,405,208,strc36);
+
+					if(getdigit(550,201,1,347)==-1)goto loopb2;
+					EV=Computer(dig);
+					if(EV<1 || EV>347)
+					{sound(5000);delay(10);nosound();
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+					goto loop13;}
+				 /*4V*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc36);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,345,"int Vradius=    ;");
+					outtextxy(510,345,dig);
+
+				loop14:
+				 /*5L*/	makeon(8,7,15,400,228,530,251,0,0,1,0,405,235,strc31);
+					setline1(550,228,600,251);
+
+				       if(LS==1) {LI=0;EL=1;}
+					else if(LS==2) {LI=0;EL=3;}
+					 else if(LS==3) {LI=1;EL=3;}
+					  else if(LS==4) {LI=1;EL=1;}
+					   else if(LS==5) {LI=3;EL=3;}
+					    else  {LI=3;EL=1;}
+				 /*5L*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+					setcolor(15);
+					settextstyle(0,0,1);
+
+					outtextxy(410,360,"setlinestyle( ,1, );");
+					itoa(LI,Line,10);
+					outtextxy(513,360,Line);
+					itoa(EL,width,10);
+					outtextxy(545,360,width);
+
+				 /*6C*/	makeon(8,7,15,400,255,530,278,0,0,1,0,405,262,strc32);
+					 color();
+				 /*6C*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,375,"setcolor(  );");
+					 itoa(C,S,10);
+					 outtextxy(480,375,S);
+       outtextxy(410,390,"ellipse(X,Y,0,360,Hradiu");sleep(1);BLANK();
+       outtextxy(410,390,"llipse(X,Y,0,360,Hradius");sleep(1);BLANK();
+       outtextxy(410,390,"lipse(X,Y,0,360,Hradius,");sleep(1);BLANK();
+       outtextxy(410,390,"ipse(X,Y,0,360,Hradius,V");sleep(1);BLANK();
+       outtextxy(410,390,"pse(X,Y,0,360,Hradius,Vr");sleep(1);BLANK();
+       outtextxy(410,390,"se(X,Y,0,360,Hradius,Vra");sleep(1);BLANK();
+       outtextxy(410,390,"e(X,Y,0,360,Hradius,Vrad");sleep(1);BLANK();
+       outtextxy(410,390,"(X,Y,0,360,Hradius,Vradi");sleep(1);BLANK();
+       outtextxy(410,390,"X,Y,0,360,Hradius,Vradiu");sleep(1);BLANK();
+       outtextxy(410,390,",Y,0,360,Hradius,Vradius");sleep(1);BLANK();
+       outtextxy(410,390,"Y,0,360,Hradius,Vradius)");sleep(1);BLANK();
+       outtextxy(410,390,",0,360,Hradius,Vradius);");sleep(1);
+
+					 OC();
+					 if(P==2) goto loopb2;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					 setcolor(C);
+					 setlinestyle(LI,1,EL);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(10);nosound();
+					 ellipse(EX,EY,0,360,EH,EV);
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb2:
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+
+
+				       break;
+				       }
+
+				 case 4:   /*LINE*/
+				       {
+					auto int LL,LT,LR,LB,LLI;
+					setcolor(4);
+					 setlinestyle(0,1,3);
+					 line(125,34,137,46);
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc41);
+
+
+				 /*1*/	makeon(8,7,15,400,117,530,140,0,0,1,0,405,124,strc20);
+				 /*2*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc21);
+				 /*3*/	makeon(15,7,8,400,174,530,197,0,0,1,0,405,181,strc22);
+				 /*4*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc40);
+				 /*5*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+				 /*6*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+				 /*g3*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+				 /*g5*/	makeon(15,7,8,550,228,600,251,1,0,1,15,550,219,strc7);
+			/*		 setlinestyle(0,1,2);
+					arc(565,240,0,180,5);
+					arc(565+11,240,180,360,5);*/
+					 setcolor(14);
+				       setlinestyle(0,1,1);
+				       line(550+7,228+12,600-7,251-11);
+				       makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop15:
+					if(getdigit(550,117,1,347)==-1)goto loopb3;
+					LL=Computer(dig);
+					if(LL<1 || LL>347)
+					{sound(5000);delay(10);nosound();
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+					 goto loop15;}
+				 /*1*/	makeon(15,7,8,400,117,530,140,0,0,1,0,405,124,strc37);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int xSTART=    ;");
+					outtextxy(498,300,dig);
+				 loop16:
+				 /*2*/	makeon(8,7,15,400,144,530,170,0,0,1,0,405,153,strc38);
+					if(getdigit(550,144,1,347)==-1)goto loopb3;
+					LT=Computer(dig);
+					if(LT<1 || LT>347)
+					{sound(5000);delay(10);nosound();
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+					 goto loop16;}
+				 /*2*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc38);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int ySTART=    ;");
+					outtextxy(498,315,dig);
+
+				 loop17:
+				 /*3*/	makeon(8,7,15,400,174,530,197,0,0,1,0,405,181,strc39);
+					if(getdigit(550,174,1,347)==-1)goto loopb3;
+					LR=Computer(dig);
+					if(LR<1 || LR>347)
+					{sound(5000);delay(10);nosound();
+				 /*g3*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+					goto loop17;}
+				 /*3*/	makeon(15,7,8,400,174,530,197,0,0,1,0,405,181,strc39);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,330,"int xEND=    ;");
+					outtextxy(485,330,dig);
+
+
+				loop18:
+				 /*4*/	makeon(8,7,15,400,201,530,224,0,0,1,0,405,208,strc40);
+					if(getdigit(550,201,1,347)==-1)goto loopb3;
+					LB=Computer(dig);
+					if(LB<1 || LB>347)
+					{sound(5000);delay(10);nosound();
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+					goto loop18;}
+				 /*4*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc40);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,345,"int yEND=    ;");
+					outtextxy(485,345,dig);
+
+
+				 /*5*/	makeon(8,7,15,400,228,530,251,0,0,1,0,405,235,strc31);
+					setline(550,228,600,251);
+				       if(LS==1) {LI=0;LLI=1;}
+					else if(LS==2) {LI=0;LLI=3;}
+					 else if(LS==3) {LI=1;LLI=3;}
+					  else if(LS==4) {LI=1;LLI=1;}
+					   else if(LS==5) {LI=3;LLI=3;}
+					    else  {LI=3;LLI=1;}
+				 /*5*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,360,"setlinestyle( ,1, );");
+
+					itoa(LI,Line,10);
+					outtextxy(513,360,Line);
+					itoa(LLI,width,10);
+					outtextxy(545,360,width);
+
+
+				 /*6*/	makeon(8,7,15,400,255,530,278,0,0,1,0,405,262,strc32);
+					 color();
+				 /*6*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,375,"setcolor(  );");
+					 itoa(C,S,10);
+					 outtextxy(480,375,S);
+			/*line(XSTART,YSTART,XEND,YEND);*/
+       outtextxy(410,390,"line(xSTART,ySTART,xEND,");sleep(1);BLANK();
+       outtextxy(410,390,"ine(xSTART,ySTART,xEND,y");sleep(1);BLANK();
+       outtextxy(410,390,"ne(xSTART,ySTART,xEND,yE");sleep(1);BLANK();
+       outtextxy(410,390,"e(xSTART,ySTART,xEND,yEN");sleep(1);BLANK();
+       outtextxy(410,390,"(xSTART,ySTART,xEND,yEND");sleep(1);BLANK();
+       outtextxy(410,390,"xSTART,ySTART,xEND,yEND)");sleep(1);BLANK();
+       outtextxy(410,390,"START,ySTART,xEND,yEND);");sleep(1);
+
+					 OC();
+					 if(P==2) goto loopb3;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+
+					 setcolor(C);
+					 setlinestyle(LI,1,LLI);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(10);nosound();
+					 line(LL,LT,LR,LB);
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb3:
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+
+
+				       break;
+				       }
+
+				 case 5:  /*ARC*/
+				       {
+
+					auto int AX,AY,AS,AE,AR,AL;
+					setcolor(4);
+					 setlinestyle(0,1,2);
+					 arc(163,43,0,180,7);
+
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc42);
+
+
+				 /*1*/	makeon(8,7,15,400,117,530,140,0,0,1,0,405,124,strc20);
+				 /*2*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc21);
+			      /*3.1*/   makeon(15,7,8,400,174,455,197,0,0,1,0,405,182,strc23);
+			      /*3.2*/   makeon(15,7,8,515,174,545,197,0,0,1,0,522,182,strc24);
+				 /*4*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc22);
+				 /*5*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+				 /*6*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+			      /*g3.1*/	makeon(8,0,15,460,174,510,197,1,0,1,15,550,186,strc7);
+			      /*g3.2*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+				 /*g5*/	makeon(15,7,8,550,228,600,251,1,0,1,15,550,219,strc7);
+			/*		 setlinestyle(0,1,2);
+					arc(565,240,0,180,5);
+					arc(565+11,240,180,360,5);*/
+				       setcolor(14);
+				       setlinestyle(0,1,1);
+				       line(550+7,228+12,600-7,251-11);
+				       makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop19:
+					if(getdigit(550,117,1,347)==-1)goto loopb4;
+					AX=Computer(dig);
+					if(AX<1 || AX>347)
+					{sound(5000);delay(10);nosound();
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+					 goto loop19;}
+				 /*1*/	makeon(15,7,8,400,117,530,140,0,0,1,0,405,124,strc20);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X=    ,");
+					outtextxy(460,300,dig);
+				 loop20:
+				 /*2*/	makeon(8,7,15,400,144,530,170,0,0,1,0,405,153,strc21);
+					if(getdigit(550,144,1,347)==-1)goto loopb4;
+					AY=Computer(dig);
+					if(AY<1 || AY>347)
+					{sound(5000);delay(10);nosound();
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+					goto loop20;}
+				 /*2*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc21);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(500,300,"Y=    ;");
+					outtextxy(520,300,dig);
+
+				 loop21:
+			      /*3.1*/   makeon(8,7,15,400,174,455,197,0,0,1,0,405,182,strc23);
+
+					if(getdigit(460,174,1,347)==-1)goto loopb4;
+					AS=Computer(dig);
+					if(AS<1 || AS>360)
+					{sound(5000);delay(10);nosound();
+			      /*g3.1*/	makeon(8,0,15,460,174,510,197,1,0,1,15,550,186,strc7);
+					goto loop21;}
+			      /*3.1*/   makeon(15,7,8,400,174,455,197,0,0,1,0,405,182,strc23);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int stangle=    ;");
+					outtextxy(510,315,dig);
+
+				 loop22:
+			      /*3.2*/   makeon(8,7,15,515,174,545,197,0,0,1,0,522,182,strc24);
+					if(getdigit(550,174,1,347)==-1)goto loopb4;
+					AE=Computer(dig);
+					if(AE<1 || AE>360)
+					{sound(5000);delay(10);nosound();
+			      /*g3.2*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+					goto loop22;}
+			      /*3.2*/   makeon(15,7,8,515,174,545,197,0,0,1,0,522,182,strc24);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,330,"int endangle=    ;");
+					outtextxy(515,330,dig);
+
+				loop23:
+				 /*4*/	makeon(8,7,15,400,201,530,224,0,0,1,0,405,208,strc22);
+					if(getdigit(550,201,1,347)==-1)goto loopb4;
+					AR=Computer(dig);
+					if(AR<1 || AR>347)
+					{sound(5000);delay(10);nosound();
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+					goto loop23;}
+				 /*4*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc22);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,345,"int radius=    ;");
+					outtextxy(500,345,dig);
+
+
+				 /*5*/	makeon(8,7,15,400,228,530,251,0,0,1,0,405,235,strc31);
+					setline1(550,228,600,251);
+				      if(LS==1) {LI=0;AL=1;}
+				 else if(LS==2) {LI=0;AL=3;}
+				 else if(LS==3) {LI=1;AL=3;}
+				 else if(LS==4) {LI=1;AL=1;}
+				 else if(LS==5) {LI=3;AL=3;}
+				 else           {LI=3;AL=1;}
+				 /*5*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,360,"setlinestyle( ,1, );");
+					itoa(LI,Line,10);
+					outtextxy(513,360,Line);
+					itoa(AL,width,10);
+					outtextxy(545,360,width);
+
+				 /*6*/	makeon(8,7,15,400,255,530,278,0,0,1,0,405,262,strc32);
+					 color();
+				 /*6*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,375,"setcolor(  );");
+					 itoa(C,S,10);
+					 outtextxy(480,375,S);
+			/*arc(X,Y,stangle,endangle,radius);*/
+       outtextxy(410,390,"arc(X,Y,stangle,endangle");sleep(1);BLANK();
+       outtextxy(410,390,"rc(X,Y,stangle,endangle,");sleep(1);BLANK();
+       outtextxy(410,390,"c(X,Y,stangle,endangle,r");sleep(1);BLANK();
+       outtextxy(410,390,"(X,Y,stangle,endangle,ra");sleep(1);BLANK();
+       outtextxy(410,390,"X,Y,stangle,endangle,rad");sleep(1);BLANK();
+       outtextxy(410,390,",Y,stangle,endangle,radi");sleep(1);BLANK();
+       outtextxy(410,390,"Y,stangle,endangle,radiu");sleep(1);BLANK();
+       outtextxy(410,390,",stangle,endangle,radius");sleep(1);BLANK();
+       outtextxy(410,390,"stangle,endangle,radius)");sleep(1);BLANK();
+       outtextxy(410,390,"tangle,endangle,radius);");sleep(1);
+
+					 OC();
+					 if(P==2) goto loopb4;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					 setcolor(C);
+					 setlinestyle(LI,1,AL);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(10);nosound();
+/* þ void far arc(int x, int y, int stangle, int endangle, int radius);*/
+					 arc(AX,AY,AS,AE,AR);
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb4:
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+
+
+				       break;
+				       }
+
+				 case 6: /*pixel*/
+					{
+					auto int PX,PY,PW;
+
+					 setcolor(4);
+					 circle(194,40,2);
+					 setfillstyle(1,4);
+					 floodfill(194,40,4);
+
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc43);
+
+			       /*setx*/	makeon(8,7,15,400,120,530,143,0,0,1,0,405,127,strc20);
+			       /*sety*/	makeon(15,7,8,400,163,530,186,0,0,1,0,405,170,strc21);
+			      /*setw*/	makeon(15,7,8,400,208,530,231,0,0,1,0,405,215,strc22);
+			      /*setc*/	makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+
+			      /*x*/	makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+			      /*y*/	makeon(8,0,15,550,163,600,186,1,0,1,15,550,153,strc7);
+			    /*width1*/  makeon(15,7,8,550,208,574,231,1,0,1,15,550,186,strc7);
+					 setcolor(14);
+					 circle(562,219,2);
+					 setfillstyle(1,14);
+					 floodfill(562,219,14);
+			    /*width2*/  makeon(15,7,8,576,208,600,231,1,0,1,15,550,186,strc7);
+					 setcolor(14);
+					 circle(588,219,1);
+					 setfillstyle(1,14);
+					 floodfill(588,219,14);
+			      /*color*/	makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+						      /* 550,208,600,231*/
+
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop24:
+					if(getdigit(550,120,1,347)==-1)goto loopb5;
+					PX=Computer(dig);
+					if(PX<1 || PX>347)
+					{sound(5000);delay(10);nosound();
+			      /*x*/	makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					 goto loop24;}
+			       /*setx*/	makeon(15,7,8,400,120,530,143,0,0,1,0,405,127,strc20);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X=    ;");
+					outtextxy(460,300,dig);
+				 loop25:
+			       /*sety*/	makeon(8,7,15,400,163,530,186,0,0,1,0,405,170,strc21);
+					if(getdigit(550,163,1,347)==-1)goto loopb5;
+					PY=Computer(dig);
+					if(PY<1 || PY>347)
+					{sound(5000);delay(10);nosound();
+			      /*y*/	makeon(8,0,15,550,163,600,186,1,0,1,15,550,153,strc7);
+					 goto loop25;}
+			       /*sety*/	makeon(15,7,8,400,163,530,186,0,0,1,0,405,170,strc21);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int Y=    ;");
+					outtextxy(460,315,dig);
+
+				 loop26:
+			      /*setw*/	makeon(8,7,15,400,208,530,231,0,0,1,0,405,215,strc22);
+					setwidth();
+
+				      if(W==2) PW=1;
+				 else if(W==1) PW=2;
+					itoa(PW,Pwidth,10);
+
+
+			      /*setw*/	makeon(15,7,8,400,208,530,231,0,0,1,0,405,215,strc22);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,330, "int Width=  ;");
+					outtextxy(495,330,Pwidth);
+
+
+				loop27:
+
+
+			      /*setc*/	makeon(8,7,15,400,252,530,275,0,0,1,0,405,259,strc32);
+					 color();
+			      /*setc*/	makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+					 setcolor(15);
+					 settextstyle(0,0,1);
+					 outtextxy(410,345,"int color=    ;");
+					 itoa(C,S,10);
+					 outtextxy(495,345,S);
+					 outtextxy(410,360,"putpixel(X,Y,color);");
+					 OC();
+					 if(P==2) goto loopb5;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					 setcolor(C);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(5);nosound();
+					 circle(PX,PY,PW);
+					 setfillstyle(1,C);
+					 floodfill(PX,PY,C);
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb5:
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					break;
+					}
+/*þ void far pieslice(int x, int y, int stangle, int endangle, int radius);*/
+
+				 case 7:  /*PIESLICE*/
+				       {
+
+				auto int PSX,PSY,PSS,PSE,PSR,PSL;
+				 setlinestyle(0,1,2);
+				 setcolor(4);
+				 pieslice(225,47,50,128,14);
+				 setfillstyle(1,7);
+				 floodfill(225,40,4);
+				 setcolor(4);
+				 line(225,47,225,34);
+
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc44);
+
+
+				 /*1*/	makeon(8,7,15,400,117,530,140,0,0,1,0,405,124,strc20);
+				 /*2*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc21);
+			      /*3.1*/   makeon(15,7,8,400,174,455,197,0,0,1,0,405,182,strc23);
+			      /*3.2*/   makeon(15,7,8,515,174,545,197,0,0,1,0,522,182,strc24);
+				 /*4*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc22);
+				 /*5*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+				 /*6*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+			      /*g3.1*/	makeon(8,0,15,460,174,510,197,1,0,1,15,550,186,strc7);
+			      /*g3.2*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+				 /*g5*/	makeon(15,7,8,550,228,600,251,1,0,1,15,550,219,strc7);
+				       setcolor(14);
+				       setlinestyle(0,1,1);
+				       line(550+7,228+12,600-7,251-11);
+				       makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop28:
+					if(getdigit(550,117,1,347)==-1)goto loopb6;
+					PSX=Computer(dig);
+					if(PSX<1 || PSX>347)
+					{sound(5000);delay(10);nosound();
+				 /*g1*/	makeon(8,0,15,550,117,600,140,1,0,1,15,550,120,strc7);
+					 goto loop28;}
+				 /*1*/	makeon(15,7,8,400,117,530,140,0,0,1,0,405,124,strc20);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X=    ,");
+					outtextxy(460,300,dig);
+				 loop29:
+				 /*2*/	makeon(8,7,15,400,144,530,170,0,0,1,0,405,153,strc21);
+					if(getdigit(550,144,1,347)==-1)goto loopb6;
+					PSY=Computer(dig);
+					if(PSY<1 || PSY>347)
+					{sound(5000);delay(10);nosound();
+				 /*g2*/	makeon(8,0,15,550,144,600,170,1,0,1,15,550,153,strc7);
+					goto loop29;}
+				 /*2*/	makeon(15,7,8,400,144,530,170,0,0,1,0,405,153,strc21);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(500,300,"Y=    ;");
+					outtextxy(520,300,dig);
+
+				 loop30:
+			      /*3.1*/   makeon(8,7,15,400,174,455,197,0,0,1,0,405,182,strc23);
+
+					if(getdigit(460,174,1,347)==-1)goto loopb6;
+					PSS=Computer(dig);
+					if(PSS<1 || PSS>360)
+					{sound(5000);delay(10);nosound();
+			      /*g3.1*/	makeon(8,0,15,460,174,510,197,1,0,1,15,550,186,strc7);
+					goto loop30;}
+			      /*3.1*/   makeon(15,7,8,400,174,455,197,0,0,1,0,405,182,strc23);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int stangle=    ;");
+					outtextxy(510,315,dig);
+
+				 loop31:
+			      /*3.2*/   makeon(8,7,15,515,174,545,197,0,0,1,0,522,182,strc24);
+					if(getdigit(550,174,1,347)==-1)goto loopb6;
+					PSE=Computer(dig);
+					if(PSE<1 || PSE>360)
+					{sound(5000);delay(10);nosound();
+			      /*g3.2*/	makeon(8,0,15,550,174,600,197,1,0,1,15,550,186,strc7);
+					goto loop31;}
+			      /*3.2*/   makeon(15,7,8,515,174,545,197,0,0,1,0,522,182,strc24);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,330,"int endangle=    ;");
+					outtextxy(515,330,dig);
+
+				loop32:
+				 /*4*/	makeon(8,7,15,400,201,530,224,0,0,1,0,405,208,strc22);
+					if(getdigit(550,201,1,347)==-1)goto loopb6;
+					PSR=Computer(dig);
+					if(PSR<1 || PSR>347)
+					{sound(5000);delay(10);nosound();
+				 /*g4*/	makeon(8,0,15,550,201,600,224,1,0,1,15,550,219,strc7);
+					goto loop32;}
+				 /*4*/	makeon(15,7,8,400,201,530,224,0,0,1,0,405,208,strc22);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,345,"int radius=    ;");
+					outtextxy(500,345,dig);
+
+
+				 /*5*/	makeon(8,7,15,400,228,530,251,0,0,1,0,405,235,strc31);
+					setline1(550,228,600,251);
+				      if(LS==1) {LI=0;PSL=1;}
+				 else if(LS==2) {LI=0;PSL=3;}
+				 else if(LS==3) {LI=1;PSL=3;}
+				 else if(LS==4) {LI=1;PSL=1;}
+				 else if(LS==5) {LI=3;PSL=3;}
+				 else           {LI=3;PSL=1;}
+				 /*5*/	makeon(15,7,8,400,228,530,251,0,0,1,0,405,235,strc31);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,360,"setlinestyle( ,1, );");
+					itoa(LI,Line,10);
+					outtextxy(513,360,Line);
+					itoa(PSL,width,10);
+					outtextxy(545,360,width);
+
+
+
+
+
+				 /*6*/	makeon(8,7,15,400,255,530,278,0,0,1,0,405,262,strc32);
+					 color();
+				 /*6*/	makeon(15,7,8,400,255,530,278,0,0,1,0,405,262,strc32);
+
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,375,"setcolor(  );");
+					 itoa(C,S,10);
+					 outtextxy(480,375,S);
+			/*pieslice(X,Y,stangle,endangle,radius);*/
+       outtextxy(410,390,"pieslice(X,Y,stangle,end");sleep(1);BLANK();
+       outtextxy(410,390,"ieslice(X,Y,stangle,enda");sleep(1);BLANK();
+       outtextxy(410,390,"eslice(X,Y,stangle,endan");sleep(1);BLANK();
+       outtextxy(410,390,"slice(X,Y,stangle,endang");sleep(1);BLANK();
+       outtextxy(410,390,"lice(X,Y,stangle,endangl");sleep(1);BLANK();
+       outtextxy(410,390,"ice(X,Y,stangle,endangle");sleep(1);BLANK();
+       outtextxy(410,390,"ce(X,Y,stangle,endangle,");sleep(1);BLANK();
+       outtextxy(410,390,"e(X,Y,stangle,endangle,r");sleep(1);BLANK();
+       outtextxy(410,390,"(X,Y,stangle,endangle,ra");sleep(1);BLANK();
+       outtextxy(410,390,"X,Y,stangle,endangle,rad");sleep(1);BLANK();
+       outtextxy(410,390,",Y,stangle,endangle,radi");sleep(1);BLANK();
+       outtextxy(410,390,"Y,stangle,endangle,radiu");sleep(1);BLANK();
+       outtextxy(410,390,",stangle,endangle,radius");sleep(1);BLANK();
+       outtextxy(410,390,"stangle,endangle,radius)");sleep(1);BLANK();
+       outtextxy(410,390,"tangle,endangle,radius);");sleep(1);
+
+					 OC();
+					 if(P==2) goto loopb6;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					 setcolor(C);
+					 setlinestyle(LI,1,PSL);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(10);nosound();
+/* þ void far arc(int x, int y, int stangle, int endangle, int radius);*/
+					 pieslice(PSX,PSY,PSS,PSE,PSR);
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb6:
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+
+
+				       break;
+				       }
+
+				 case 8: /*ABC*/
+					{
+
+					auto int ABCX,ABCY,ABCF,ABCS;
+					makeon(8,7,15,241,26,281,54,1,0,1 ,4,248,27,strc8 );/*abc*/
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+
+					makeon(15,7,8,430,84,580,110,1,0,1,4,445,85,strc45);
+
+					makeon(8,7,15,400,120,530,143,0,0,1,0,405,127,strc20);
+					makeon(15,7,8,400,153,530,176,0,0,1,0,405,160,strc21);
+					makeon(15,7,8,400,186,465,209,0,0,1,0,410,195,strc46);/*46*/
+					makeon(15,7,8,485,186,515,210,0,0,1,15,489,195,strc48);/*FONT1*/
+					makeon(15,7,8,516,186,546,210,1,0,1,15,517,186,strc48);/*FONT2*/
+					makeon(15,7,8,547,186,577,210,3,0,1,15,549,185,strc48);/*FONT3*/
+					makeon(15,7,8,578,186,608,210,4,0,1,15,578,185,strc48);/*FONT4*/
+
+					makeon(15,7,8,400,219,465,242,0,0,1,0,410,228,strc47);/*47*/
+					makeon(15,7,8,485,219,504,242,0,0,1,15,490-6,227,strc49);/*S1*/
+					makeon(15,7,8,505,219,524,242,0,0,1,15,510-6,227,strc50);/*S2*/
+					makeon(15,7,8,525,219,544,242,0,0,1,15,530-6,227,strc51);/*S3*/
+					makeon(15,7,8,545,219,564,242,0,0,1,15,550-6,227,strc52);/*S4*/
+					makeon(15,7,8,565,219,584,242,0,0,1,15,570-6,227,strc53);/*S5*/
+					makeon(15,7,8,585,219,604,242,0,0,1,15,590-6,227,strc54);/*S6*/
+
+					makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+
+			      /*GX*/	makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+			      /*GY*/	makeon(8,0,15,550,153,600,176,1,0,1,15,550,153,strc7);
+			      /*color*/	makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+
+
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop33:
+					if(getdigit(550,120,1,347)==-1)goto loopb7;
+					ABCX=Computer(dig);
+					if(ABCX<1 || ABCX>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					goto loop33;}
+					makeon(15,7,8,400,120,530,143,0,0,1,0,405,127,strc20);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X=    ,");
+					outtextxy(460,300,dig);
+				 loop34:
+					makeon(8,7,15,400,153,530,176,0,0,1,0,405,160,strc21);
+					if(getdigit(550,153,1,347)==-1)goto loopb7;
+					ABCY=Computer(dig);
+					if(ABCY<1 || ABCY>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,153,600,176,1,0,1,15,550,120,strc7);
+					goto loop34;}
+					makeon(15,7,8,400,153,530,176,0,0,1,0,405,160,strc21);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(500,300,"Y=    ;");
+					outtextxy(520,300,dig);
+					/*FONT*/
+					makeon(8,7,15,400,186,465,209,0,0,1,0,410,195,strc46);/*46*/
+					SETFONT();
+					makeon(15,7,8,400,186,465,209,0,0,1,0,410,195,strc46);/*46*/
+					/*SIZE*/
+					makeon(8,7,15,400,219,465,242,0,0,1,0,410,228,strc47);/*47*/
+					SETSIZE();
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"settextstyle( ,0, );");
+					font[0]=NULL;
+					itoa(FONT,font,10);
+					outtextxy(513,315,font);
+					itoa(SIZE,size,10);
+					outtextxy(545,315,size);
+					makeon(15,7,8,400,219,465,242,0,0,1,0,410,228,strc47);/*47*/
+					GETSTRING();
+					settextstyle(0,0,1);
+					setcolor(15);
+					outtextxy(410,330,"char ST[20];");
+					makeon(8,7,15,400,252,530,275,0,0,1,0,405,259,strc32);
+					color();
+					makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+					 setcolor(15);
+					 settextstyle(0,0,1);
+					 outtextxy(410,345,"setcolor(  );");
+					 itoa(C,S,10);
+					 outtextxy(480,345,S);
+					 outtextxy(410,360,"outtextxy(X,Y,ST);");
+					 OC();
+					 if(P==2) goto loopb7;
+					 setcolor(C);
+					 settextstyle(FONT,0,SIZE);
+					 /*setlinestyle(LI,1,CL);*/
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(5);nosound();
+					 outtextxy(ABCX,ABCY,GS);
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb7:
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					break;
+					}
+				case 9: /*COPY*/
+					{
+	      auto int COPYX1,COPYY1,COPYX2,COPYY2;
+					makeon(8,7,15,282,26,341,54,1,0,1 ,4,289,26,strc9 );/*copy*/
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc58);
+
+			      /*setx1*/	makeon(8,7,15,400,120,530,143,0,0,1,0,405,127,strc37);
+			      /*sety1*/	makeon(15,7,8,400,163,530,186,0,0,1,0,405,170,strc38);
+			      /*setx2*/	makeon(15,7,8,400,208,530,231,0,0,1,0,405,215,strc39);
+			      /*sety2*/	makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc40);
+
+			      /*x1*/	makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+			      /*y1*/	makeon(8,0,15,550,163,600,186,1,0,1,15,550,153,strc7);
+			      /*x2*/    makeon(8,0,15,550,208,600,231,1,0,1,15,550,186,strc7);
+			      /*y2*/	makeon(8,0,15,550,255,600,277,1,0,1,15,550,252,strc7);
+
+				   loop41:
+					if(getdigit(550,120,1,347)==-1)goto loopb10;
+					COPYX1=Computer(dig);
+					X=COPYX1;
+					if(COPYX1<1 || COPYX1>347)
+					{sound(5000);delay(10);nosound();
+			      /*x1*/	makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					 goto loop41;}
+			       /*setx1*/makeon(15,7,8,400,120,530,143,0,0,1,0,405,127,strc37);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int L=    ,");
+					outtextxy(460,300,dig);
+				 loop42:
+			       /*sety1*/makeon(8,7,15,400,163,530,186,0,0,1,0,405,170,strc38);
+					if(getdigit(550,163,1,347)==-1)goto loopb10;
+					COPYY1=Computer(dig);
+					Y=COPYY1;
+					if(COPYY1<1 || COPYY1>347)
+					{sound(5000);delay(10);nosound();
+			      /*y1*/	makeon(8,0,15,550,163,600,186,1,0,1,15,550,153,strc7);
+					 goto loop42;}
+			       /*sety1*/makeon(15,7,8,400,163,530,186,0,0,1,0,405,170,strc38);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(500,300," T=    ;");
+					outtextxy(525,300,dig);
+
+				   loop43:
+			      /*setx2*/	makeon(8,7,15,400,208,530,231,0,0,1,0,405,215,strc39);
+					if(getdigit(550,208,1,347)==-1)goto loopb10;
+					COPYX2=Computer(dig);
+					if(COPYX2<1 || COPYX2>347)
+					{sound(5000);delay(10);nosound();
+			      /*x2*/    makeon(8,0,15,550,208,600,231,1,0,1,15,550,186,strc7);
+					 goto loop43;}
+			      /*setx2*/	makeon(15,7,8,400,208,530,231,0,0,1,0,405,215,strc39);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int R=    ,");
+					outtextxy(460,315,dig);
+				 loop44:
+			      /*sety2*/	makeon(8,7,15,400,252,530,275,0,0,1,0,405,259,strc40);
+					if(getdigit(550,255,1,347)==-1)goto loopb10;
+					COPYY2=Computer(dig);
+					if(COPYY2<1 || COPYY2>347)
+					{sound(5000);delay(10);nosound();
+			      /*y2*/	makeon(8,0,15,550,255,600,277,1,0,1,15,550,252,strc7);
+					 goto loop44;}
+			      /*sety2*/	makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc40);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(500,315," B=    ;");
+					outtextxy(525,315,dig);
+	sleep(1);
+	sound(5000);delay(10);nosound();
+	outtextxy(410,330,"void *buffer;");
+	outtextxy(410,345,"unsigned int size;");
+	outtextxy(410,360,"size=imagesize(L,T,R,B);");
+	outtextxy(410,375,"buffer=malloc(size);");
+	outtextxy(407,390,"getimage(L,T,R,B,buffer);");
+		 OC();
+		 if(P==2) goto loopb10;
+
+	COPY(COPYX1,COPYY1,COPYX2,COPYY2);
+
+				  loopb10:
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+
+					break;
+					}
+				case 10: /*PASTE*/
+					{
+
+			if(set==0){ERROR();break;}
+			auto int XPA,YPA;
+	      /*paste*/	makeon(8,7,15,342,26,401,54,1,0,1,4,349,26,strc10);/*paste*/
+			makeon(15,7,8,390,76,620,230,0,0,1,9,490,300,strc7);
+			makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+			makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc59);
+	      /*setx1*/	makeon(8,7,15,400,120,530,143,0,0,1,0,405,127,strc20);
+	      /*sety1*/	makeon(15,7,8,400,163,530,186,0,0,1,0,405,170,strc21);
+	      /*x1*/	makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+	      /*y1*/	makeon(8,0,15,550,163,600,186,1,0,1,15,550,153,strc7);
+
+
+				   loop45:
+					if(getdigit(550,120,1,347)==-1)goto loopb11;
+					XPA=Computer(dig);
+					if(XPA<1 || XPA>347)
+					{sound(5000);delay(10);nosound();
+	      /*x1*/	makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					 goto loop45;}
+	      /*setx1*/	makeon(15,7,8,400,120,530,143,0,0,1,0,405,127,strc20);
+				 loop46:
+	      /*sety1*/	makeon(8,7,15,400,163,530,186,0,0,1,0,405,170,strc21);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X=    ;");
+					outtextxy(460,300,dig);
+
+
+
+
+					if(getdigit(550,163,1,347)==-1)goto loopb11;
+					YPA=Computer(dig);
+					if(YPA<1 || YPA>347)
+					{sound(5000);delay(10);nosound();
+			      /*y1*/	makeon(8,0,15,550,163,600,186,1,0,1,15,550,153,strc7);
+					 goto loop46;}
+	      /*sety1*/	makeon(15,7,8,400,163,530,186,0,0,1,0,405,170,strc21);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int Y=    ;");
+					outtextxy(460,315,dig);
+			outtextxy(410,330,"putimage(X,Y,buffer,0);");
+
+
+		 OC();
+		 if(P==2) goto loopb11;
+
+
+		/*PASTE();*/
+		   sound(5000);delay(5);nosound();
+		  setviewport(32,81,379,428,1);
+		   putimage(XPA,YPA,buf2,0);
+		   setviewport(0,0, getmaxx(), getmaxy(),1);
+
+
+				  loopb11:
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+
+
+				break;
+					}
+				case 11: /*PAINT*/
+					{
+		auto int PAX,PAY,PAC,PAB;
+
+		makeon(8,7,15,402,26,461,54,1,0,1 ,4,409,26,strc11);/*paint*/
+		makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+		makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+		makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc55);
+
+/*setx*/	makeon(8,7,15,400,120,530,143,0,0,1,0,405,127,strc20);
+/*sety*/	makeon(15,7,8,400,163,530,186,0,0,1,0,405,170,strc21);
+/*setw*/        makeon(15,7,8,400,208,600,231,0,0,1,0,425,215,strc56);
+/*setc*/        makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+
+      /*x*/     makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+     /*y*/    	makeon(8,0,15,550,163,600,186,1,0,1,15,550,153,strc7);
+     /*color*/	makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+			      /* 550,208,600,231*/
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop35:
+					if(getdigit(550,120,1,347)==-1)goto loopb8;
+					PAX=Computer(dig);
+					if(PAX<1 || PAX>347)
+					{sound(5000);delay(10);nosound();
+			      /*x*/  	makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					 goto loop35;}
+			       /*setx*/	makeon(15,7,8,400,120,530,143,0,0,1,0,405,127,strc20);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X=    ;");
+					outtextxy(460,300,dig);
+				 loop36:
+			       /*sety*/	makeon(8,7,15,400,163,530,186,0,0,1,0,405,170,strc21);
+					if(getdigit(550,163,1,347)==-1)goto loopb8;
+					PAY=Computer(dig);
+					if(PAY<1 || PAY>347)
+					{sound(5000);delay(10);nosound();
+			      /*y*/    	makeon(8,0,15,550,163,600,186,1,0,1,15,550,153,strc7);
+					 goto loop36;}
+			       /*sety*/	makeon(15,7,8,400,163,530,186,0,0,1,0,405,170,strc21);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int Y=    ;");
+					outtextxy(460,315,dig);
+
+
+			      /*setw*/ 	makeon(8,7,15,400,208,600,231,0,0,1,0,425,215,strc56);
+					color();
+			      /*setw*/ 	makeon(15,7,8,400,208,600,231,0,0,1,0,425,215,strc56);
+					PAB=C;
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,330,"int BORDER=   ;");
+					itoa(PAB,paintb,10);
+					outtextxy(500,330,paintb);
+
+		       /*setc*/ 	makeon(8,7,15,400,252,530,275,0,0,1,0,405,259,strc32);
+					 color();
+				      /*setc*/	makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+					 setcolor(15);
+					 settextstyle(0,0,1);
+					 outtextxy(410,345,"setfillstyle(1,  );");
+					 PAC=C;
+					 itoa(PAC,paintc,10);
+					 outtextxy(530,345,paintc);
+					 outtextxy(410,360,"floodfill(X,Y,BORDER);");
+					 OC();
+					 if(P==2) goto loopb8;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					 setcolor(C);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(5);nosound();
+					 setfillstyle(1,C);
+					 floodfill(PAX,PAY,PAB);
+
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb8:
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					break;
+					}
+				case 12:  /*clear*/
+					{
+					auto int CLL,CLT,CLR,CLB,CLC;
+					makeon(8,7,15,462,26,520,54,1,0,1 ,4,470,26,strc13);/*clear*/
+					makeon(15,7,8,390,76,620,285,0,0,1,9,490,300,strc7);
+					makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+
+					makeon(15,7,8,430,84,580,110,1,0,1,4,447,85,strc57);
+
+					makeon(8,7,15,400,120,530,143,0,0,1,0,405,127,strc37);
+					makeon(15,7,8,400,153,530,176,0,0,1,0,405,160,strc38);
+					makeon(15,7,8,400,186,530,209,0,0,1,0,405,193,strc39);
+					makeon(15,7,8,400,219,530,242,0,0,1,0,405,226,strc40);
+					makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+
+					makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					makeon(8,0,15,550,153,600,176,1,0,1,15,550,153,strc7);
+					makeon(8,0,15,550,186,600,209,1,0,1,15,550,186,strc7);
+			      /*line*/	makeon(8,0,15,550,219,600,242,1,0,1,15,550,219,strc7);
+			      /*color*/	makeon(15,7,8,550,255,573,277,1,0,1,15,550,252,strc7);
+					setcolor(4);
+					settextstyle(0,0,2);
+					outtextxy(580,255,"ß");
+					outtextxy(580,265,"");
+
+				   loop37:
+					if(getdigit(550,120,1,347)==-1)goto loopb9;
+					CLL=Computer(dig);
+					if(CLL<1 || CLL>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,120,600,143,1,0,1,15,550,120,strc7);
+					 goto loop37;}
+					makeon(15,7,8,400,120,530,143,0,0,1,0,405,127,strc37);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,300,"int X1=    ,");
+					outtextxy(470,300,dig);
+				 loop38:
+					makeon(8,7,15,400,153,530,176,0,0,1,0,405,160,strc38);
+					if(getdigit(550,153,1,347)==-1)goto loopb9;
+					CLT=Computer(dig);
+					if(CLT<1 || CLT>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,153,600,176,1,0,1,15,550,120,strc7);
+					 goto loop38;}
+					makeon(15,7,8,400,153,530,176,0,0,1,0,405,160,strc38);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(500,300," Y1=    ;");
+					outtextxy(535,300,dig);
+
+				 loop39:
+					makeon(8,7,15,400,186,530,209,0,0,1,0,405,193,strc39);
+					if(getdigit(550,186,1,347)==-1)goto loopb9;
+					CLR=Computer(dig);
+					if(CLR<1 || CLR>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,186,600,209,1,0,1,15,550,186,strc7);
+					goto loop39;}
+					makeon(15,7,8,400,186,530,209,0,0,1,0,405,193,strc39);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(410,315,"int X2=    ,");
+					outtextxy(470,315,dig);
+				loop40:    /*550,219,600,242*/
+					makeon(8,7,15,400,219,530,242,0,0,1,0,405,226,strc40);
+					if(getdigit(550,219,1,347)==-1)goto loopb9;
+					CLB=Computer(dig);
+					if(CLB<1 || CLB>347)
+					{sound(5000);delay(10);nosound();
+					makeon(8,0,15,550,219,600,242,1,0,1,15,550,186,strc7);
+					goto loop40;}
+					makeon(15,7,8,400,219,530,242,0,0,1,0,405,226,strc40);
+					setcolor(15);
+					settextstyle(0,0,1);
+					outtextxy(500,315," Y2=    ;");
+					outtextxy(535,315,dig);
+
+					makeon(8,7,15,400,252,530,275,0,0,1,0,405,259,strc32);
+					 color();
+					makeon(15,7,8,400,252,530,275,0,0,1,0,405,259,strc32);
+					 setcolor(15);
+					 settextstyle(0,0,1);
+					 outtextxy(408,330,"setcolor(  );");
+					 itoa(C,S,10);
+					 outtextxy(480,330,S);
+
+					 setcolor(15);
+					 outtextxy(410,345,"rectangle(X1,Y1,X2,Y2);");
+					 outtextxy(410,360,"setfillstyle(1,  );");
+					 CLC=C;
+					 itoa(CLC,paintc,10);
+					 outtextxy(530,360,paintc);
+					 outtextxy(410,375,"floodfill(X1+1,Y+1,  );");
+					 outtextxy(562,375,paintc);
+
+					 OC();
+					 if(P==2) goto loopb9;
+					 makeon(8,0,15,400,290,608,426,0,0,1,9,490,300,strc7);
+					 setviewport(32,81,379,428,CLP);
+					 sound(5000);delay(5);nosound();
+					 setcolor(0);
+					 rectangle(CLL,CLT,CLR,CLB);
+					 setfillstyle(1,0);
+					 floodfill(CLL+2,CLT+2,0);
+					 setcolor(C);
+					 rectangle(CLL,CLT,CLR,CLB);
+					 setfillstyle(1,C);
+					 floodfill(CLL+2,CLT+2,C);
+
+					 setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+				  loopb9:
+					 makeon(3,3,3,400,290,608,426,0,0,1,9,490,300,strc7);
+					 makeon(3,3,3,390,76,620,285,0,0,1,9,490,300,strc7);
+					break;
+					}
+				 case 13:
+				       {
+		 makeon(8,7,15,521,26,565,54,1,0,1,4,528,26,strc14);/*CLS*/
+		 sound(5000);delay(5);nosound();
+		 makeon(1,0,9,27,77,383,433,1,0,1,5,70,120,strc7 );
+		 makeon(1,15,9,27,77,383,433,1,0,1,5,70,120,strc7 );
+
+				       break;
+				       }
+				 case 14:
+					{
+				    loopq:
+					goodbye();
+					exit(0);
+
+					}
+				 }
+
+			  }
+		}/*end while*/
+
+
+	}
+
+void get_g(void)
+	{
+	auto int driver=DETECT,MODE=1;
+	initgraph(&driver,&MODE,"");
+	setviewport(0, 0, getmaxx(), getmaxy(), CLP);
+	cleardevice();
+	}
+
+
+
+void  main()
+       {
+	get_g();
+	cleardevice();
+	edit();
+       } /* end of main */
+
+
+
+
+
+

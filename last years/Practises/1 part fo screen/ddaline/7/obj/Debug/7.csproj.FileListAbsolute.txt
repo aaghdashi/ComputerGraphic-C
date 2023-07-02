@@ -1,0 +1,7 @@
+H:\Amin.Ganbarloo\Practises\1 part fo screen\ddaline\7\obj\Debug\7.exe
+H:\Amin.Ganbarloo\Practises\1 part fo screen\ddaline\7\obj\Debug\7.pdb
+H:\Amin.Ganbarloo\Practises\1 part fo screen\ddaline\7\obj\Debug\ResolveAssemblyReference.cache
+H:\Amin.Ganbarloo\Practises\1 part fo screen\ddaline\7\obj\Debug\_.Form1.resources
+H:\Amin.Ganbarloo\Practises\1 part fo screen\ddaline\7\obj\Debug\_7.Properties.Resources.resources
+H:\Amin.Ganbarloo\Practises\1 part fo screen\ddaline\7\obj\Debug\GenerateResource-ResGen.read.1.tlog
+H:\Amin.Ganbarloo\Practises\1 part fo screen\ddaline\7\obj\Debug\GenerateResource-ResGen.write.1.tlog

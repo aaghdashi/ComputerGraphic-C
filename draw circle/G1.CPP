@@ -1,0 +1,32 @@
+#include"stdio.h"
+#include"stdlib.h"
+#include"dos.h"
+#include"graphics.h"
+#include"math.h"
+#include"conio.h"
+main()
+{
+int x,y,i,j;
+int gd=0,gm;
+initgraph(&gd,&gm,"");
+int a[100];
+int b[100];
+int c[100];
+x=640;
+y=480;
+for(i=0;i<=100;i++)
+{
+a[i]=random(x) ;
+b[i]=random(y);
+c[i]=random(180);
+setcolor(random(15));
+circle(a[i],b[i],c[i]);
+delay(10);
+}
+for(i=100;i>=0;i--)
+{setcolor(0);
+circle(a[i],b[i],c[i]);
+delay(10);
+}
+getch();
+}
